@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jfactory-expandable": "git+https://github.com/antoinedze/jfactory-expandable.git",
+    "jfactory-form": ">1.0.0"
+  }
+}
