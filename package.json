@@ -1,6 +1,10 @@
 {
   "dependencies": {
-    "jfactory-expandable": "git+https://github.com/antoinedze/jfactory-expandable.git",
-    "jfactory-form": ">1.0.0"
+    "ejs-webpack-loader": "^2.2.2",
+    "jfactory-expandable": "^1.0.0",
+    "jfactory-form": "^1.0.7"
+  },
+  "devDependencies": {
+    "html-loader": "^0.5.5"
   }
 }

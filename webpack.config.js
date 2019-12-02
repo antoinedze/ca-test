@@ -3,7 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-	plugins: [
-		new HtmlWebpackPlugin()
-	]
+	module: {
+	    rules: [
+	      	{
+	        	test: /\.ejs$/,
+	        	use: ['ejs-webpack-loader']
+	    	}
+		]
+	}
 }
