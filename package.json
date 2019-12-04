@@ -1,10 +1,9 @@
 {
-  "dependencies": {
-    "ejs-webpack-loader": "^2.2.2",
-    "jfactory-expandable": "^1.0.0",
-    "jfactory-form": "^1.0.7"
-  },
-  "devDependencies": {
-    "html-loader": "^0.5.5"
-  }
+ "scripts": {
+  "deploy": "npm i && npm link webpack && npm link webpack-cli"
+ },
+ "dependencies": {
+  "jfactory-expandable": "^1.0.1",
+  "jfactory-form": "^1.0.19"
+ }
 }
