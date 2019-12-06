@@ -5,19 +5,56 @@ window.React = require('react');
 window.ReactDOM = require('react-dom');
 
 
-window.Input = class extends React.Component {
-	constructor(props){
-		super(props);
-	}
-	
-	render(){
-		return React.createElement('input', {value: this.props.value});
-	}
-}
+
 //var input = new Input;
 //debugger;
 //ReactDOM.render(React.createElement(Input, {value: 'Значение'}), document.body);
 //debugger;
+
+document.body.innerHTML = '<div id="root"></div>';	
+
+var frame = class extends React.Component {
+	constructor(props){
+		super(props);
+		
+		this.state = {
+			data: props.data
+		};
+	}
+
+	addRow(e){
+		this.setState({
+			data: this.state.data.concat('')
+		});
+	}
+
+	removeRow(e, index){
+		this.setState({
+			data: this.state.data.filter((item, itemIndex) => itemIndex !== index)
+		})
+	}
+
+	onChange(e, index){
+		this.setState({data: Object.values({...this.state.data, ...{[index]: e.target.value}})})
+	}
+	
+	render(){
+		var rows = this.state.data.map((value, index) => React.createElement(row, {...{index, value}, ...{removeRow: this.removeRow.bind(this), onChange: this.onChange.bind(this)}})),
+			rowsWrapper = React.createElement.apply(null, ['div', {className: 'expandable-rows'}].concat(rows)),
+			addBtn = React.createElement('button', {className: 'add-btn', onClick: this.addRow.bind(this)}, 'Добавить');
+		return React.createElement('div', {className: 'expandable'}, rows, addBtn);
+	}
+}
+
+var row = class extends React.Component {
+	render(){
+		var element = React.createElement('input', {value: this.props.value, name: `person[${this.props.index}]name`, onChange: e => this.props.onChange(e, this.props.index)}),
+			removeBtn = React.createElement('button', {className: 'remove-btn', onClick: e => this.props.removeRow(e, this.props.index)}, 'Удалить');
+		return React.createElement('div', {className: 'expandable-row'}, element, removeBtn);
+	}
+}
+
+ReactDOM.render(React.createElement(frame, {data: ['Вася','Петя', 'Коля', 'Маша']}), document.getElementById('root'))
 
 let form = new Form({
 	classList: ['shedule__create-record-form', 'circle-preloader'],
