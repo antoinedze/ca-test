@@ -1,17 +1,23 @@
 const Form = require('jfactory-form');
 const Expandable = require('jfactory-expandable');
 
-//const React = require('react');
-//const ReactDOM = require('react-dom');
+window.React = require('react');
+window.ReactDOM = require('react-dom');
 
 
-/*var Input = {
+window.Input = class extends React.Component {
+	constructor(props){
+		super(props);
+	}
+	
 	render(){
 		return React.createElement('input', {value: this.props.value});
 	}
 }
-ReactDOM.render(React.createElement(Input, {value: 'Значение'}), document.body);*/
-debugger;
+//var input = new Input;
+//debugger;
+//ReactDOM.render(React.createElement(Input, {value: 'Значение'}), document.body);
+//debugger;
 
 let form = new Form({
 	classList: ['shedule__create-record-form', 'circle-preloader'],

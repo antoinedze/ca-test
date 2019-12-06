@@ -5,7 +5,9 @@
     "dependencies": {
         "jfactory": "^1.0.10",
         "jfactory-expandable": "^1.0.1",
-        "jfactory-form": "^1.0.19"
+        "jfactory-form": "^1.0.19",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
     },
     "devDependencies": {
         "webpack": "^4.41.2",
