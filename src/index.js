@@ -11,7 +11,7 @@ window.ReactDOM = require('react-dom');
 //ReactDOM.render(React.createElement(Input, {value: 'Значение'}), document.body);
 //debugger;
 
-document.body.innerHTML = '<div id="root"></div>';	
+/*document.body.innerHTML = '<div id="root"></div>';	
 
 var frame = class extends React.Component {
 	constructor(props){
@@ -54,9 +54,13 @@ var row = class extends React.Component {
 	}
 }
 
-ReactDOM.render(React.createElement(frame, {data: ['Вася','Петя', 'Коля', 'Маша']}), document.getElementById('root'))
+ReactDOM.render(React.createElement(frame, {data: ['Вася','Петя', 'Коля', 'Маша']}), document.getElementById('root'))*/
 
 let form = new Form({
+	title: 'Создать записьmmm'
+});
+
+/*let form = new Form({
 	classList: ['shedule__create-record-form', 'circle-preloader'],
 	title: 'Создать запись',
 	labelAfter: ':',
@@ -240,7 +244,7 @@ let form = new Form({
 				type: 'textarea',
 				placeholder: 'Пожелания клиента'
 			}]
-		},*/
+		},
 	}
-});
+});*/
 //debugger;
