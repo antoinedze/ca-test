@@ -3,10 +3,8 @@ const React = require('react');
 const Form = require('jfactory-form');
 const Expandable = require('jfactory-expandable');
 
-const Renders = require.context('./renders', false, /\.jsx/);
+const render = require('./render.jsx');
 
 module.exports = new Form({
   title: 'Hello, world',
-}, {
-  buttonWrapper: Renders('./button-wrapper.jsx')
-}, document.getElementById('root'))
+}, render, document.getElementById('root'))
