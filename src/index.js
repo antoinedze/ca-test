@@ -1,8 +1,6 @@
-const Form = require('jfactory-form');
-const Expandable = require('jfactory-expandable');
 
-window.React = require('react');
-window.ReactDOM = require('react-dom');
+const RecordForm = require('./modules/record-form');
+
 
 
 
@@ -59,20 +57,6 @@ ReactDOM.render(React.createElement(frame, {data: ['Вася','Петя', 'Ко�
 /*let root = document.createElement('div');
 root.id = 'root';
 document.body.append(root);*/
-
-var form = new Form({
-  title: 'Hello, world',
-  buttonWrapper: (Button, text) => (
-    <div className="button-wrapper">
-      <Button>
-        <span className="button-inner">{text}</span>
-      </Button>
-    </div>
-  )
-})
-
-//document.body.innerHTML = '<div id="root"></div>';
-
 
 /*let form = new Form({
   classList: ['shedule__create-record-form', 'circle-preloader'],
