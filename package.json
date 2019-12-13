@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "jfactory-expandable": "^1.0.1",
-    "jfactory-form": "^1.0.23"
+    "jfactory-form": "^1.0.26"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

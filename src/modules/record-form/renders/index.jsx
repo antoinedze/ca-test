@@ -1,10 +1,11 @@
 const React = require('react');
 
-module.exports = ({Form, Input, SubmitButton}, props) => (
+module.exports = ({Form, Inputs, SubmitButton}, props) => (
   <Form className="button-wrapper">
     <div className="input-wrapper">
-      <Input/>
+      <Inputs/>
     </div>
     <SubmitButton><span className="button-inner">{props.submitText}</span></SubmitButton>
   </Form>
-)
+);
+//module.exports = void(0);
