@@ -171,7 +171,7 @@ eval("const React = __webpack_require__(/*! jfactory-react */ \"./node_modules/j
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = render => class Input extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.state = {\r\n      value: this.props.value\r\n    }\r\n    \r\n    this.localComponents = {\r\n      Input: () => React.createElement('input', {\r\n        value: this.state.value,\r\n        onChange: e => {\r\n          this.setState({value: e.target.value})\r\n        }\r\n      })\r\n    }\r\n  }\r\n  \r\n  defaultRender(){\r\n    let {Input} = this.localComponents;\r\n    \r\n    return React.createElement(Input);\r\n  }\r\n  \r\n  render(){\r\n    let {Input} = this.localComponents;\r\n      \r\n    return this.getRender(Input) || this.defaultRender();\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components/input.js?");
+eval("const React = __webpack_require__(/*! jfactory-react */ \"./node_modules/jfactory-react/index.js\");\r\n\r\nmodule.exports = class Input extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.state = {\r\n      value: this.props.value\r\n    }\r\n    \r\n    this.localComponents = {\r\n      Input: () => React.createElement('input', {\r\n        value: this.state.value,\r\n        onChange: e => {\r\n          this.setState({value: e.target.value})\r\n        }\r\n      })\r\n    }\r\n  }\r\n  \r\n  defaultRender(){\r\n    let {Input} = this.localComponents;\r\n    \r\n    return React.createElement(Input);\r\n  }\r\n  \r\n  render(){\r\n    let {Input} = this.localComponents;\r\n      \r\n    return this.getRender(Input) || this.defaultRender();\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components/input.js?");
 
 /***/ }),
 
@@ -286,7 +286,7 @@ eval("\r\n\r\nmodule.exports = class {\r\n\tstatic parse(q){\r\n\t\tvar ret = {}
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class JFactoryReact extends React {\r\n\tstatic getComponentRender(component){\r\n    let {elements, renders} = component.props, \r\n      renderKey = `./${component.constructor.name.toLowerCase()}.jsx`,\r\n      render = renders.keys().includes(renderKey) ? renders(renderKey) : void(0);\r\n    \r\n    dividedElements = Object.keys(elements).reduce((obj, key) => {\r\n      let element = elements[key];\r\n      obj[element.children ? 'parents' : 'children'][key] = element;\r\n      return obj;\r\n    }, {children: {}, parents: {}});\r\n    \r\n    let {children, parents} = dividedElements;\r\n    \r\n    childrenComponents = Object.keys(children).reduce((obj, key) => {\r\n      let element = children[key];\r\n      obj[key] = typeof(element) === 'function' ? element : () => React.createElement(element.type, element.props);\r\n      return obj;\r\n    }, {});\r\n    \r\n    parentsComponents = Object.keys(parents).reduce((obj, key) => {\r\n      let element = parents[key],\r\n        children = element.children.map(key => React.createElement(childrenComponents[key]));\r\n      obj[key] = () => React.createElement(element.type, element.props, ...children);\r\n      return obj;\r\n    }, {});\r\n    \r\n    return typeof(render) === 'function' ? render({...parentsComponents, ...childrenComponents}) : void(0);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-react/index.js?");
+eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst String = __webpack_require__(/*! jfactory-string */ \"./node_modules/jfactory-string/index.js\");\r\n\r\nReact.setComponentsRenders = (components, renders) => {\r\n  return components.keys().reduce((obj, key) => {\r\n    let keyContainsWord = key.match(/\\w+/), newKey, componentName, component, render, renderKey;\r\n    if(!keyContainsWord)return obj;\r\n    \r\n    newKey = new String(keyContainsWord[0]);\r\n    renderKey = `./${newKey}.jsx`;\r\n    componentName = newKey.camelize();\r\n    component = components(key);\r\n    render = renders && renders.keys().includes(renderKey) ? renders(renderKey) : void(0);\r\n    \r\n    Object.defineProperties(component.prototype, {\r\n      getRender: {value: typeof(render) === 'function' ? render : () => void(0)}\r\n    });\r\n    obj[componentName] = component;\r\n    return obj;\r\n  }, {});\r\n}\r\n\r\nmodule.exports = React;\n\n//# sourceURL=webpack:///./node_modules/jfactory-react/index.js?");
 
 /***/ }),
 
@@ -487,18 +487,18 @@ eval("const Form = __webpack_require__(/*! jfactory-form */ \"./node_modules/jfa
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./index.jsx\": \"./src/modules/record-form/renders/index.jsx\",\n\t\"./input.jsx\": \"./src/modules/record-form/renders/input.jsx\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/modules/record-form/renders sync \\\\.jsx$\";\n\n//# sourceURL=webpack:///./src/modules/record-form/renders_sync_nonrecursive_\\.jsx$?");
+eval("var map = {\n\t\"./form.jsx\": \"./src/modules/record-form/renders/form.jsx\",\n\t\"./input.jsx\": \"./src/modules/record-form/renders/input.jsx\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/modules/record-form/renders sync \\\\.jsx$\";\n\n//# sourceURL=webpack:///./src/modules/record-form/renders_sync_nonrecursive_\\.jsx$?");
 
 /***/ }),
 
-/***/ "./src/modules/record-form/renders/index.jsx":
-/*!***************************************************!*\
-  !*** ./src/modules/record-form/renders/index.jsx ***!
-  \***************************************************/
+/***/ "./src/modules/record-form/renders/form.jsx":
+/*!**************************************************!*\
+  !*** ./src/modules/record-form/renders/form.jsx ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nmodule.exports = ({\n  Form,\n  Inputs,\n  SubmitButton\n}, props) => React.createElement(Form, {\n  className: \"button-wrapper\"\n}, React.createElement(\"div\", {\n  className: \"input-wrapper\"\n}, React.createElement(Inputs, null)), React.createElement(SubmitButton, null, React.createElement(\"span\", {\n  className: \"button-inner\"\n}, props.submitText))); //module.exports = void(0);\n\n//# sourceURL=webpack:///./src/modules/record-form/renders/index.jsx?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nmodule.exports = ({\n  Form,\n  Inputs,\n  SubmitButton\n}, props) => React.createElement(Form, {\n  className: \"button-wrapper\"\n}, React.createElement(\"div\", {\n  className: \"input-wrapper\"\n}, React.createElement(Inputs, null)), React.createElement(SubmitButton, null, React.createElement(\"span\", {\n  className: \"button-inner\"\n}, props.submitText))); //module.exports = void(0);\n\n//# sourceURL=webpack:///./src/modules/record-form/renders/form.jsx?");
 
 /***/ }),
 
