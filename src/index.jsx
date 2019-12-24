@@ -1,6 +1,13 @@
+const React = require('jfactory-react');
+const ReactDOM = require('react-dom');
 
 const RecordForm = require('./modules/record-form');
 
+let DOM = (
+  <RecordForm/>
+);
+
+ReactDOM.render(DOM, document.getElementById('root'));
 
 
 
