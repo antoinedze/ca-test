@@ -2,14 +2,16 @@ const Form = require('jfactory-form');
 const Expandable = require('jfactory-expandable');
 const React = require('jfactory-react');
 
-const formRenders = require.context('./form', false, /\.jsx$/);
+const Renders = require.context('./renders', false, /\.jsx$/);
 
 module.exports = class RecordForm extends React.Component {
   constructor(props){
     super(props);
     
+    let {clientForm, }
     this.clientForm = new Form({
-      title: 'Форма',
+      title: '',
+      submitText: '',
       type: 'div',
       inputs: [
         {
@@ -31,10 +33,14 @@ module.exports = class RecordForm extends React.Component {
           value: '89991234567'
         }
       ]
-    }, formRenders);
+    }, {
+      clientForm: Renders('./client-form.jsx'),
+      clientFormInput: Renders('./client-form-input.jsx'),
+    });
     
     this.recordForm = new Form({
-      title: 'Форма',
+      title: '',
+      submitText: '',
       type: 'div',
       inputs: [
         {
@@ -56,10 +62,9 @@ module.exports = class RecordForm extends React.Component {
         console.log(data);
       }
     }, 
-    ...[
-      this.clientForm.element, 
-      this.recordForm.element,
-      React.createElement('button', {type: 'submit'})
-    ]);
+    this.clientForm.element, 
+    this.recordForm.element,
+    React.createElement('button', {type: 'submit'}, 'mainSubmit')
+    );
   }
 }
