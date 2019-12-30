@@ -1,6 +1,6 @@
+const React = require('react');
 const Form = require('jfactory-form');
 const Expandable = require('jfactory-expandable');
-const React = require('jfactory-react');
 
 const Renders = require.context('./renders', false, /\.jsx$/);
 
@@ -8,10 +8,7 @@ module.exports = class RecordForm extends React.Component {
   constructor(props){
     super(props);
     
-    let {clientForm, }
     this.clientForm = new Form({
-      title: '',
-      submitText: '',
       type: 'div',
       inputs: [
         {
@@ -34,13 +31,11 @@ module.exports = class RecordForm extends React.Component {
         }
       ]
     }, {
-      clientForm: Renders('./client-form.jsx'),
-      clientFormInput: Renders('./client-form-input.jsx'),
+      form: Renders('./client-form.jsx'),
+      input: Renders('./client-form-input.jsx'),
     });
     
     this.recordForm = new Form({
-      title: '',
-      submitText: '',
       type: 'div',
       inputs: [
         {
@@ -50,7 +45,10 @@ module.exports = class RecordForm extends React.Component {
           value: 'Ольга'
         },
       ]
-    }, formRenders);
+    }, {
+      form: Renders('./record-form.jsx'),
+      input: Renders('./record-form-input.jsx'),
+    });
   }
   
   render(){
@@ -58,7 +56,7 @@ module.exports = class RecordForm extends React.Component {
       onSubmit: e => {
         e.preventDefault();
         let data = this.recordForm.serialize();
-        data.client = this.recordForm.serialize();
+        data.client = this.clientForm.serialize();
         console.log(data);
       }
     }, 

@@ -1,4 +1,4 @@
-const React = require('jfactory-react');
+const React = require('react');
 const ReactDOM = require('react-dom');
 
 const RecordForm = require('./modules/record-form');
