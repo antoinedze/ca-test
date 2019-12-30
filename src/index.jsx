@@ -10,7 +10,6 @@ let DOM = (
 ReactDOM.render(DOM, document.getElementById('root'));
 
 
-
 //var input = new Input;
 //debugger;
 //ReactDOM.render(React.createElement(Input, {value: 'Значение'}), document.body);
