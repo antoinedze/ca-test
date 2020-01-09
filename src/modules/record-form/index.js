@@ -8,61 +8,54 @@ module.exports = class RecordForm extends React.Component {
   constructor(props){
     super(props);
     
-    this.clientForm = new Form({
+    this.form = new Form({
       type: 'div',
-      inputs: [
-        {
-          key: 'name',
-          name: 'name',
-          type: 'text',
-          value: 'Вася'
+      inputsGroups: {
+        client: {
+          inputs: {
+            name: {
+              input: {
+                name: 'name',
+                type: 'text',
+                value: 'Вася'
+              }
+            },
+            email: {
+              input: {
+                name: 'email',
+                type: 'email',
+                value: 'vasya@mail.ru'
+              }
+            },
+            phone: {
+              input: {
+                name: 'phone',
+                type: 'tel',
+                value: '89991234567'
+              }
+            }
+          }
         },
-        {
-          key: 'email',
-          name: 'email',
-          type: 'email',
-          value: 'vasya@mail.ru'
+        record: {
+          inputs: {
+            staffId: {
+              input: {
+                name: 'staff_id',
+                type: 'select',
+                options: [
+                  {value: 1, text: 'Ольга'},
+                  {value: 2, text: 'Мария'},
+                  {value: 3, text: 'Ксения'}
+                ]
+              }
+            }
+          }
         },
-        {
-          key: 'phone',
-          name: 'phone',
-          type: 'tel',
-          value: '89991234567'
-        }
-      ]
-    }, {
-      form: Renders('./client-form.jsx'),
-      input: Renders('./client-form-input.jsx'),
-    });
-    
-    this.recordForm = new Form({
-      type: 'div',
-      inputs: [
-        {
-          key: 'master',
-          name: 'master',
-          type: 'text',
-          value: 'Ольга'
-        },
-      ]
-    }, {
-      form: Renders('./record-form.jsx'),
-      input: Renders('./record-form-input.jsx'),
-    });
+      }
+    }, Renders);
   }
   
   render(){
-    return React.createElement('form', {
-      onSubmit: e => {
-        e.preventDefault();
-        let data = this.recordForm.serialize();
-        data.client = this.clientForm.serialize();
-        console.log(data);
-      }
-    }, 
-    this.clientForm.element, 
-    this.recordForm.element,
-    React.createElement('button', {type: 'submit'}, 'mainSubmit')
-    );
+    return this.form.element;
   }
 }

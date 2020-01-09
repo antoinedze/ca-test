@@ -6,7 +6,7 @@
     },
     "dependencies": {
         "jfactory-expandable": "^1.0.1",
-        "jfactory-form": "^1.0.39-17",
+        "jfactory-form": "^1.0.39-19",
         "react": "^16.12.0",
         "react-dom": "^16.12.0"
     },
