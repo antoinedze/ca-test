@@ -47,7 +47,8 @@ module.exports = class RecordForm extends React.Component {
                   {value: 2, text: 'Мария'},
                   {value: 3, text: 'Ксения'}
                 ],
-                value: 2
+                value: 2,
+                valueDecorator: value => +value
               }
             },
             comment: {
@@ -63,9 +64,12 @@ module.exports = class RecordForm extends React.Component {
     }, Renders);
     
     this.form.on('change', e => {
+      let data = this.form.data;
       console.log('Form is changed!');
     });
     this.form.on('submit', e => {
+      debugger;
+      let data = this.form.data;
       console.log('Form is submitted!');
     })
   }
