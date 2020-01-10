@@ -1,6 +1,9 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
+window.React = React;
+window.ReactDOM = ReactDOM;
+
 const RecordForm = require('./modules/record-form');
 
 let DOM = (

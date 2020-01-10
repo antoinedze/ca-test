@@ -46,13 +46,28 @@ module.exports = class RecordForm extends React.Component {
                   {value: 1, text: 'Ольга'},
                   {value: 2, text: 'Мария'},
                   {value: 3, text: 'Ксения'}
-                ]
+                ],
+                value: 2
+              }
+            },
+            comment: {
+              input: {
+                name: 'comment',
+                type: 'textarea',
+                value: 'Описание'
               }
             }
           }
         },
       }
     }, Renders);
+    
+    this.form.on('change', e => {
+      console.log('Form is changed!');
+    });
+    this.form.on('submit', e => {
+      console.log('Form is submitted!');
+    })
   }
   
   render(){
