@@ -10,14 +10,19 @@ module.exports = class RecordForm extends React.Component {
     
     this.form = new Form({
       type: 'div',
+      title: this.props.title,
+      data: {
+        client: {
+          name: this.props.data.name
+        }
+      },
       inputsGroups: {
         client: {
           inputs: {
             name: {
               input: {
                 name: 'name',
-                type: 'text',
-                value: 'Вася'
+                type: 'text'
               }
             },
             email: {
@@ -64,17 +69,16 @@ module.exports = class RecordForm extends React.Component {
     }, Renders);
     
     this.form.on('change', e => {
-      let data = this.form.data;
+      let data = e.data;
       console.log('Form is changed!');
     });
     this.form.on('submit', e => {
-      debugger;
-      let data = this.form.data;
+      let data = e.data;
       console.log('Form is submitted!');
     })
   }
   
   render(){
-    return this.form.element;
+    return this.form.element();
   }
 }

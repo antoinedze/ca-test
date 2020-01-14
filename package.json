@@ -2,18 +2,18 @@
     "scripts": {
         "deploy": "npm i npm-add-dependencies -g && npm i npm-update-all -g && npm i npm-check-updates -g && npm i && npm link webpack && npm link webpack-cli",
         "prod": "ncu -u \"/^jfactory-.*$/\" && npm update && (set NODE_ENV=production) && webpack --silent",
-        "dev": "ncu -u -n \"/^jfactory-.*$/\" && npm update && (set NODE_ENV=development) && webpack --watch"
+        "dev": "ncu -u -n \"/^jfactory-.*$/\" && npm update && (set NODE_ENV=development) && webpack --watch | nodemon --watch ./dist --inspect index.js"
     },
     "dependencies": {
         "jfactory-expandable": "^1.0.1",
-        "jfactory-form": "^1.0.39-20",
+        "jfactory-form": "^1.0.39-25",
         "react": "^16.12.0",
         "react-dom": "^16.12.0"
     },
     "devDependencies": {
-        "@babel/core": "^7.7.7",
-        "@babel/preset-env": "^7.7.7",
-        "@babel/preset-react": "^7.7.4",
+        "@babel/core": "^7.8.3",
+        "@babel/preset-env": "^7.8.3",
+        "@babel/preset-react": "^7.8.3",
         "babel-loader": "^8.0.6",
         "html-webpack-plugin": "^3.2.0",
         "webpack": "^4.41.5",

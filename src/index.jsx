@@ -7,7 +7,7 @@ window.ReactDOM = ReactDOM;
 const RecordForm = require('./modules/record-form');
 
 let DOM = (
-  <RecordForm/>
+  <RecordForm title="Создать запись" data={{name: 'Антон'}}/>
 );
 
 ReactDOM.render(DOM, document.getElementById('root'));
