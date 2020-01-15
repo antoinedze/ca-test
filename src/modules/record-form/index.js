@@ -22,7 +22,8 @@ module.exports = class RecordForm extends React.Component {
             name: {
               input: {
                 name: 'name',
-                type: 'text'
+                type: 'text',
+                value: this.props.data.name
               }
             },
             email: {

@@ -6,8 +6,36 @@ window.ReactDOM = ReactDOM;
 
 const RecordForm = require('./modules/record-form');
 
+class Modal extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      content: 'hello'
+    }
+  }
+  render(){
+    return <div className="modal">{this.state.content}</div>
+  }
+}
+
+class Button extends React.Component {
+  render(){
+    return <button className="button" onClick={this.onClick.bind(this)}>жми</button>
+  }
+  
+  onClick(e){
+    this.context.modal.ref.current.setState({content: 'world'})
+  }
+}
+var modal = <Modal ref={React.createRef()}/>;
+Button.contextType = React.createContext({modal});
 let DOM = (
-  <RecordForm title="Создать запись" data={{name: 'Антон'}}/>
+  <div>
+    <RecordForm title="Создать запись" data={{name: 'Антон'}}/>
+    
+    {modal}
+    <Button/>
+  </div>
 );
 
 ReactDOM.render(DOM, document.getElementById('root'));
