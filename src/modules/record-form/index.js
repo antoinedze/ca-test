@@ -29,39 +29,32 @@ module.exports = class RecordForm extends React.Component {
       ref: this.ref,
       type: 'div',
       title: this.props.title,
-      data: {
+      data: this.props.data,
+      groups: {
         client: {
-          name: this.props.data.name
-        }
-      },
-      inputsGroups: {
-        client: {
-          inputs: {
+          fields: {
             name: {
               input: {
                 name: 'name',
                 type: 'text',
-                value: this.props.data.name
               }
             },
             email: {
               input: {
                 name: 'email',
                 type: 'email',
-                value: 'vasya@mail.ru'
               }
             },
             phone: {
               input: {
                 name: 'phone',
                 type: 'tel',
-                value: '89991234567'
               }
             }
           }
         },
         record: {
-          inputs: {
+          fields: {
             staffId: {
               input: {
                 name: 'staff_id',
@@ -71,7 +64,6 @@ module.exports = class RecordForm extends React.Component {
                   {value: 2, text: 'Мария'},
                   {value: 3, text: 'Ксения'}
                 ],
-                value: 2,
                 valueDecorator: value => +value
               }
             },
@@ -79,7 +71,6 @@ module.exports = class RecordForm extends React.Component {
               input: {
                 name: 'comment',
                 type: 'textarea',
-                value: 'Описание'
               }
             }
           }
