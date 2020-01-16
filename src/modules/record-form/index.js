@@ -88,7 +88,7 @@ module.exports = class RecordForm extends React.Component {
       renders: {
         main: Renders('./main.jsx'),
         group: Renders('./group.jsx'),
-        input: Renders('./input.jsx'),
+        field: Renders('./field.jsx'),
       }
     })
   }

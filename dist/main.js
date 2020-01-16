@@ -149,7 +149,18 @@ eval("const JFactory = __webpack_require__(/*! jfactory */ \"./node_modules/jfac
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./group.js\": \"./node_modules/jfactory-form/components/group.js\",\n\t\"./input.js\": \"./node_modules/jfactory-form/components/input.js\",\n\t\"./main.js\": \"./node_modules/jfactory-form/components/main.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./node_modules/jfactory-form/components sync \\\\.js$\";\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components_sync_nonrecursive_\\.js$?");
+eval("var map = {\n\t\"./field.js\": \"./node_modules/jfactory-form/components/field.js\",\n\t\"./group.js\": \"./node_modules/jfactory-form/components/group.js\",\n\t\"./main.js\": \"./node_modules/jfactory-form/components/main.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./node_modules/jfactory-form/components sync \\\\.js$\";\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components_sync_nonrecursive_\\.js$?");
+
+/***/ }),
+
+/***/ "./node_modules/jfactory-form/components/field.js":
+/*!********************************************************!*\
+  !*** ./node_modules/jfactory-form/components/field.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Field extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.state = {\r\n      value: this.props.input.value\r\n    }\r\n    \r\n    this.localComponents = {\r\n      Input: props => {\r\n        let {input, dataKey} = this.props,\r\n          {className, name, type, options, valueDecorator} = input,\r\n          elementType,\r\n          defaultProps = {\r\n            ...this.state,\r\n            ...{\r\n              onChange: e => {\r\n                let value = typeof(valueDecorator) === 'function' ? valueDecorator(e.target.value) : e.target.value;\r\n                this.setState({value: value});\r\n                this.props.setState({[dataKey]: value});\r\n              }\r\n            }\r\n          };\r\n        \r\n        switch(type){\r\n          case 'select':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...defaultProps,\r\n              ...props\r\n            }, ...options.map(({value, text}) => React.createElement('option', {value}, text)));\r\n          case 'textarea':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...defaultProps,\r\n              ...props\r\n            });\r\n          default:\r\n            return React.createElement('input', {\r\n              ...{className, name, type},\r\n              ...defaultProps,\r\n              ...props\r\n            });\r\n        }\r\n      }\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    let render = this.context.render || this.defaultRender;\r\n    return render(this.localComponents, this.props);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components/field.js?");
 
 /***/ }),
 
@@ -160,18 +171,7 @@ eval("var map = {\n\t\"./group.js\": \"./node_modules/jfactory-form/components/g
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Group extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.localComponents = {\r\n      Group: props => Object.keys(this.props.inputs).map(key => {\r\n        let {Input} = this.context.dependents;\r\n        return React.createElement(Input, {\r\n          ...this.props.inputs[key],\r\n          ...{\r\n            key,\r\n            dataKey: key,\r\n            setState: this.props.setState\r\n          },\r\n        })\r\n      })\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    let render = this.context.render || this.defaultRender;\r\n    return render(this.localComponents, this.props);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components/group.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-form/components/input.js":
-/*!********************************************************!*\
-  !*** ./node_modules/jfactory-form/components/input.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Input extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.state = {\r\n      value: this.props.input.value\r\n    }\r\n    \r\n    this.localComponents = {\r\n      Input: props => {\r\n        let {input, dataKey} = this.props,\r\n          {className, name, type, options, valueDecorator} = input,\r\n          elementType,\r\n          defaultProps = {\r\n            ...this.state,\r\n            ...{\r\n              onChange: e => {\r\n                let value = typeof(valueDecorator) === 'function' ? valueDecorator(e.target.value) : e.target.value;\r\n                this.setState({value: value});\r\n                this.props.setState({[dataKey]: value});\r\n              }\r\n            }\r\n          };\r\n        \r\n        switch(type){\r\n          case 'select':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...defaultProps,\r\n              ...props\r\n            }, ...options.map(({value, text}) => React.createElement('option', {value}, text)));\r\n          case 'textarea':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...defaultProps,\r\n              ...props\r\n            });\r\n          default:\r\n            return React.createElement('input', {\r\n              ...{className, name, type},\r\n              ...defaultProps,\r\n              ...props\r\n            });\r\n        }\r\n      }\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    let render = this.context.render || this.defaultRender;\r\n    return render(this.localComponents, this.props);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components/input.js?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Group extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.localComponents = {\r\n      Fields: props => Object.keys(this.props.inputs).map(key => {\r\n        let {Field} = this.context.dependents;\r\n        return React.createElement(Field, {\r\n          ...this.props.inputs[key],\r\n          ...{\r\n            key,\r\n            dataKey: key,\r\n            setState: this.props.setState\r\n          },\r\n        })\r\n      })\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    let render = this.context.render || this.defaultRender;\r\n    return render(this.localComponents, this.props);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/components/group.js?");
 
 /***/ }),
 
@@ -193,7 +193,7 @@ eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const defaultRenders = __webpack_require__(\"./node_modules/jfactory-form/renders sync \\\\.jsx$\");\r\n\r\nmodule.exports = {\r\n  type: 'form',\r\n  title: 'Заголовок формы',\r\n  inputsGroups: [],\r\n  data: {},\r\n  submitText: 'Отправить',\r\n  endpoint: '/',\r\n  contentType: 'application/x-www-form-urlencoded;charset=utf-8',\r\n  responseHandler: response => response.text(),\r\n  renders: {\r\n    main: defaultRenders('./main.jsx'),\r\n    group: defaultRenders('./group.jsx'),\r\n    input: defaultRenders('./input.jsx'),\r\n  },\r\n  /*successTitle: 'Спасибо!',\r\n  editModeEditTitle: 'Редактировать',\r\n  editModeEditSubmitText: 'Сохранить',\r\n  editModeEditSuccessTitle: 'Изменения сохранены!',\r\n  editModeDeleteSubmitText: 'Удалить',\r\n  editModeDeleteSuccessTitle: 'Удалено!',\r\n  hideSubmitButtons: false,\r\n  onBeforeChange: () => new Promise(s => s()),\r\n  onInit: null,\r\n  onChange: () => {},\r\n  rowClassName: ''*/\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/defaults.js?");
+eval("const defaultRenders = __webpack_require__(\"./node_modules/jfactory-form/renders sync \\\\.jsx$\");\r\n\r\nmodule.exports = {\r\n  type: 'form',\r\n  title: 'Заголовок формы',\r\n  inputsGroups: [],\r\n  data: {},\r\n  submitText: 'Отправить',\r\n  endpoint: '/',\r\n  contentType: 'application/x-www-form-urlencoded;charset=utf-8',\r\n  responseHandler: response => response.text(),\r\n  renders: {\r\n    main: defaultRenders('./main.jsx'),\r\n    group: defaultRenders('./group.jsx'),\r\n    field: defaultRenders('./field.jsx'),\r\n  },\r\n  /*successTitle: 'Спасибо!',\r\n  editModeEditTitle: 'Редактировать',\r\n  editModeEditSubmitText: 'Сохранить',\r\n  editModeEditSuccessTitle: 'Изменения сохранены!',\r\n  editModeDeleteSubmitText: 'Удалить',\r\n  editModeDeleteSuccessTitle: 'Удалено!',\r\n  hideSubmitButtons: false,\r\n  onBeforeChange: () => new Promise(s => s()),\r\n  onInit: null,\r\n  onChange: () => {},\r\n  rowClassName: ''*/\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/defaults.js?");
 
 /***/ }),
 
@@ -205,7 +205,7 @@ eval("const defaultRenders = __webpack_require__(\"./node_modules/jfactory-form/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst EventsHandler = __webpack_require__(/*! wf-events-handler */ \"./node_modules/wf-events-handler/index.js\");\r\n\r\nconst Components = __webpack_require__(\"./node_modules/jfactory-form/components sync \\\\.js$\");\r\nconst Defaults = __webpack_require__(/*! ./defaults.js */ \"./node_modules/jfactory-form/defaults.js\");\r\n\r\nconst Main = Components('./main.js');\r\nconst Group = Components('./group.js');\r\nconst Input = Components('./input.js');\r\n\r\nclass ReactForm extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.renders = {...this.constructor.defaultProps.renders, ...this.props.renders};\r\n    \r\n    this.eventsHandler = new EventsHandler(['init', 'change', 'submit']);\r\n    \r\n    Main.contextType = React.createContext({\r\n      dependents: {Group},\r\n      render: this.renders.main,\r\n      eventsHandler: this.eventsHandler \r\n    });\r\n\r\n    Group.contextType = React.createContext({\r\n      dependents: {Input},\r\n      render: this.renders.group,\r\n    });\r\n    \r\n    Input.contextType = React.createContext({\r\n      render: this.renders.input,\r\n    });\r\n  }\r\n  \r\n  render(){\r\n    return React.createElement(Main, this.props);\r\n  }\r\n}\r\n\r\nReactForm.defaultProps = Defaults;\r\n\r\nmodule.exports = ReactForm;\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/index.js?");
+eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst EventsHandler = __webpack_require__(/*! wf-events-handler */ \"./node_modules/wf-events-handler/index.js\");\r\n\r\nconst Components = __webpack_require__(\"./node_modules/jfactory-form/components sync \\\\.js$\");\r\nconst Defaults = __webpack_require__(/*! ./defaults.js */ \"./node_modules/jfactory-form/defaults.js\");\r\n\r\nconst Main = Components('./main.js');\r\nconst Group = Components('./group.js');\r\nconst Field = Components('./field.js');\r\n\r\nclass ReactForm extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.renders = {...this.constructor.defaultProps.renders, ...this.props.renders};\r\n    \r\n    this.eventsHandler = new EventsHandler(['init', 'change', 'submit']);\r\n    \r\n    Main.contextType = React.createContext({\r\n      dependents: {Group},\r\n      render: this.renders.main,\r\n      eventsHandler: this.eventsHandler \r\n    });\r\n\r\n    Group.contextType = React.createContext({\r\n      dependents: {Field},\r\n      render: this.renders.group,\r\n    });\r\n    \r\n    Field.contextType = React.createContext({\r\n      render: this.renders.field,\r\n    });\r\n  }\r\n  \r\n  render(){\r\n    return React.createElement(Main, this.props);\r\n  }\r\n}\r\n\r\nReactForm.defaultProps = Defaults;\r\n\r\nmodule.exports = ReactForm;\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/index.js?");
 
 /***/ }),
 
@@ -216,7 +216,18 @@ eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/re
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./group.jsx\": \"./node_modules/jfactory-form/renders/group.jsx\",\n\t\"./input.jsx\": \"./node_modules/jfactory-form/renders/input.jsx\",\n\t\"./main.jsx\": \"./node_modules/jfactory-form/renders/main.jsx\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./node_modules/jfactory-form/renders sync \\\\.jsx$\";\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/renders_sync_nonrecursive_\\.jsx$?");
+eval("var map = {\n\t\"./field.jsx\": \"./node_modules/jfactory-form/renders/field.jsx\",\n\t\"./group.jsx\": \"./node_modules/jfactory-form/renders/group.jsx\",\n\t\"./main.jsx\": \"./node_modules/jfactory-form/renders/main.jsx\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./node_modules/jfactory-form/renders sync \\\\.jsx$\";\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/renders_sync_nonrecursive_\\.jsx$?");
+
+/***/ }),
+
+/***/ "./node_modules/jfactory-form/renders/field.jsx":
+/*!******************************************************!*\
+  !*** ./node_modules/jfactory-form/renders/field.jsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = ({Input}, props) => {\r\n  return React.createElement(Input);\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/renders/field.jsx?");
 
 /***/ }),
 
@@ -227,18 +238,7 @@ eval("var map = {\n\t\"./group.jsx\": \"./node_modules/jfactory-form/renders/gro
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = ({Group}, props) => {\r\n  return React.createElement(Group);\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/renders/group.jsx?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-form/renders/input.jsx":
-/*!******************************************************!*\
-  !*** ./node_modules/jfactory-form/renders/input.jsx ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = ({Input}, props) => {\r\n  return React.createElement(Input);\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/renders/input.jsx?");
+eval("module.exports = ({Fields}, props) => {\r\n  return React.createElement(Fields);\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-form/renders/group.jsx?");
 
 /***/ }),
 
@@ -510,7 +510,7 @@ eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactForm = __webpack_require__(/*! jfactory-form */ \"./node_modules/jfactory-form/index.js\");\n\nconst Expandable = __webpack_require__(/*! jfactory-expandable */ \"./node_modules/jfactory-expandable/index.js\");\n\nconst Renders = __webpack_require__(\"./src/modules/record-form/renders sync \\\\.jsx$\");\n\nmodule.exports = class RecordForm extends React.Component {\n  constructor(props) {\n    super(props);\n    this.ref = React.createRef();\n  }\n\n  componentDidMount() {\n    let {\n      eventsHandler\n    } = this.ref.current;\n    eventsHandler.on('change', e => {\n      let data = e.data;\n      console.log('Form is changed!');\n    });\n    eventsHandler.on('submit', e => {\n      let data = e.data;\n      console.log('Form is submitted!');\n    });\n  }\n\n  render() {\n    return React.createElement(ReactForm, {\n      ref: this.ref,\n      type: 'div',\n      title: this.props.title,\n      data: {\n        client: {\n          name: this.props.data.name\n        }\n      },\n      inputsGroups: {\n        client: {\n          inputs: {\n            name: {\n              input: {\n                name: 'name',\n                type: 'text',\n                value: this.props.data.name\n              }\n            },\n            email: {\n              input: {\n                name: 'email',\n                type: 'email',\n                value: 'vasya@mail.ru'\n              }\n            },\n            phone: {\n              input: {\n                name: 'phone',\n                type: 'tel',\n                value: '89991234567'\n              }\n            }\n          }\n        },\n        record: {\n          inputs: {\n            staffId: {\n              input: {\n                name: 'staff_id',\n                type: 'select',\n                options: [{\n                  value: 1,\n                  text: 'Ольга'\n                }, {\n                  value: 2,\n                  text: 'Мария'\n                }, {\n                  value: 3,\n                  text: 'Ксения'\n                }],\n                value: 2,\n                valueDecorator: value => +value\n              }\n            },\n            comment: {\n              input: {\n                name: 'comment',\n                type: 'textarea',\n                value: 'Описание'\n              }\n            }\n          }\n        }\n      },\n      renders: {\n        main: Renders('./main.jsx'),\n        group: Renders('./group.jsx'),\n        input: Renders('./input.jsx')\n      }\n    });\n  }\n\n};\n\n//# sourceURL=webpack:///./src/modules/record-form/index.js?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactForm = __webpack_require__(/*! jfactory-form */ \"./node_modules/jfactory-form/index.js\");\n\nconst Expandable = __webpack_require__(/*! jfactory-expandable */ \"./node_modules/jfactory-expandable/index.js\");\n\nconst Renders = __webpack_require__(\"./src/modules/record-form/renders sync \\\\.jsx$\");\n\nmodule.exports = class RecordForm extends React.Component {\n  constructor(props) {\n    super(props);\n    this.ref = React.createRef();\n  }\n\n  componentDidMount() {\n    let {\n      eventsHandler\n    } = this.ref.current;\n    eventsHandler.on('change', e => {\n      let data = e.data;\n      console.log('Form is changed!');\n    });\n    eventsHandler.on('submit', e => {\n      let data = e.data;\n      console.log('Form is submitted!');\n    });\n  }\n\n  render() {\n    return React.createElement(ReactForm, {\n      ref: this.ref,\n      type: 'div',\n      title: this.props.title,\n      data: {\n        client: {\n          name: this.props.data.name\n        }\n      },\n      inputsGroups: {\n        client: {\n          inputs: {\n            name: {\n              input: {\n                name: 'name',\n                type: 'text',\n                value: this.props.data.name\n              }\n            },\n            email: {\n              input: {\n                name: 'email',\n                type: 'email',\n                value: 'vasya@mail.ru'\n              }\n            },\n            phone: {\n              input: {\n                name: 'phone',\n                type: 'tel',\n                value: '89991234567'\n              }\n            }\n          }\n        },\n        record: {\n          inputs: {\n            staffId: {\n              input: {\n                name: 'staff_id',\n                type: 'select',\n                options: [{\n                  value: 1,\n                  text: 'Ольга'\n                }, {\n                  value: 2,\n                  text: 'Мария'\n                }, {\n                  value: 3,\n                  text: 'Ксения'\n                }],\n                value: 2,\n                valueDecorator: value => +value\n              }\n            },\n            comment: {\n              input: {\n                name: 'comment',\n                type: 'textarea',\n                value: 'Описание'\n              }\n            }\n          }\n        }\n      },\n      renders: {\n        main: Renders('./main.jsx'),\n        group: Renders('./group.jsx'),\n        field: Renders('./field.jsx')\n      }\n    });\n  }\n\n};\n\n//# sourceURL=webpack:///./src/modules/record-form/index.js?");
 
 /***/ }),
 
@@ -521,7 +521,18 @@ eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./group.jsx\": \"./src/modules/record-form/renders/group.jsx\",\n\t\"./input.jsx\": \"./src/modules/record-form/renders/input.jsx\",\n\t\"./main.jsx\": \"./src/modules/record-form/renders/main.jsx\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/modules/record-form/renders sync \\\\.jsx$\";\n\n//# sourceURL=webpack:///./src/modules/record-form/renders_sync_nonrecursive_\\.jsx$?");
+eval("var map = {\n\t\"./field.jsx\": \"./src/modules/record-form/renders/field.jsx\",\n\t\"./group.jsx\": \"./src/modules/record-form/renders/group.jsx\",\n\t\"./main.jsx\": \"./src/modules/record-form/renders/main.jsx\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/modules/record-form/renders sync \\\\.jsx$\";\n\n//# sourceURL=webpack:///./src/modules/record-form/renders_sync_nonrecursive_\\.jsx$?");
+
+/***/ }),
+
+/***/ "./src/modules/record-form/renders/field.jsx":
+/*!***************************************************!*\
+  !*** ./src/modules/record-form/renders/field.jsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nmodule.exports = ({\n  Input\n}, props) => React.createElement(\"div\", {\n  className: \"field\"\n}, React.createElement(Input, {\n  className: props.input.type\n}));\n\n//# sourceURL=webpack:///./src/modules/record-form/renders/field.jsx?");
 
 /***/ }),
 
@@ -532,18 +543,7 @@ eval("var map = {\n\t\"./group.jsx\": \"./src/modules/record-form/renders/group.
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nmodule.exports = ({\n  Group\n}, props) => React.createElement(\"div\", {\n  className: \"group\",\n  \"data-group-key\": props.dataKey\n}, React.createElement(Group, null));\n\n//# sourceURL=webpack:///./src/modules/record-form/renders/group.jsx?");
-
-/***/ }),
-
-/***/ "./src/modules/record-form/renders/input.jsx":
-/*!***************************************************!*\
-  !*** ./src/modules/record-form/renders/input.jsx ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nmodule.exports = ({\n  Input\n}, props) => React.createElement(\"div\", {\n  className: \"input-wrapper\"\n}, React.createElement(Input, {\n  className: props.input.type\n}));\n\n//# sourceURL=webpack:///./src/modules/record-form/renders/input.jsx?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nmodule.exports = ({\n  Fields\n}, props) => React.createElement(\"div\", {\n  className: \"group\",\n  \"data-group-key\": props.dataKey\n}, React.createElement(\"div\", {\n  className: \"group-label\"\n}, props.dataKey), React.createElement(\"div\", {\n  className: \"group-fields\"\n}, React.createElement(Fields, null)));\n\n//# sourceURL=webpack:///./src/modules/record-form/renders/group.jsx?");
 
 /***/ }),
 
