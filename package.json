@@ -1,14 +1,14 @@
 {
   "scripts": {
-    "deploy": "npm i npm-add-dependencies -g && npm i npm-check-updates -g && npm i nodemon -g && npm i extends-classes -g && npm i && npm link webpack && npm link webpack-cli",
-    "start": "ncu -u \"/^(jfactory|wf)-.*$/\" && npm update && (set NODE_ENV=production) && webpack --silent --watch | nodemon --watch ./dist index.js",
-    "dev": "ncu -u -n \"/^(jfactory|wf)-.*$/\" && npm update && (set NODE_ENV=development) && webpack --watch | nodemon --watch ./dist --inspect index.js"
+    "deploy": "npm i npm-add-dependencies -g && npm i npm-check-updates -g && npm i nodemon -g && npm i",
+    "start": "ncu -u \"/^wf-.*$/\" && npm update && (set NODE_ENV=production) && \"node_modules/.bin/webpack\" --silent --watch | nodemon --watch ./dist index.js",
+    "dev": "ncu -u -n \"/^wf-.*$/\" && npm update && (set NODE_ENV=development) && \"node_modules/.bin/webpack\" --watch | nodemon --watch ./dist --inspect index.js"
   },
   "dependencies": {
     "jfactory-expandable": "^1.0.1",
-    "jfactory-form": "^1.0.39-30",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "wf-react-form": "^0.0.1-0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",

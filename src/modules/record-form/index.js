@@ -1,5 +1,5 @@
 const React = require('react');
-const ReactForm = require('jfactory-form');
+const ReactForm = require('wf-react-form');
 const Expandable = require('jfactory-expandable');
 
 const Renders = require.context('./renders', false, /\.jsx$/);
