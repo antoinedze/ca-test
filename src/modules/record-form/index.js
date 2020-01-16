@@ -1,5 +1,5 @@
 const React = require('react');
-const Form = require('jfactory-form');
+const ReactForm = require('jfactory-form');
 const Expandable = require('jfactory-expandable');
 
 const Renders = require.context('./renders', false, /\.jsx$/);
@@ -8,7 +8,25 @@ module.exports = class RecordForm extends React.Component {
   constructor(props){
     super(props);
     
-    this.form = new Form({
+    this.ref = React.createRef();
+  }
+  
+  componentDidMount(){
+    let {eventsHandler} = this.ref.current;
+    
+    eventsHandler.on('change', e => {
+      let data = e.data;
+      console.log('Form is changed!');
+    });
+    eventsHandler.on('submit', e => {
+      let data = e.data;
+      console.log('Form is submitted!');
+    })
+  }
+  
+  render(){
+    return React.createElement(ReactForm, {
+      ref: this.ref,
       type: 'div',
       title: this.props.title,
       data: {
@@ -22,7 +40,8 @@ module.exports = class RecordForm extends React.Component {
             name: {
               input: {
                 name: 'name',
-                type: 'text'
+                type: 'text',
+                value: this.props.data.name
               }
             },
             email: {
@@ -65,20 +84,12 @@ module.exports = class RecordForm extends React.Component {
             }
           }
         },
+      },
+      renders: {
+        main: Renders('./main.jsx'),
+        group: Renders('./group.jsx'),
+        input: Renders('./input.jsx'),
       }
-    }, Renders);
-    
-    this.form.on('change', e => {
-      let data = e.data;
-      console.log('Form is changed!');
-    });
-    this.form.on('submit', e => {
-      let data = e.data;
-      console.log('Form is submitted!');
     })
-  }
-  
-  render(){
-    return this.form.element();
   }
 }
