@@ -12,13 +12,11 @@ module.exports = class RecordForm extends React.Component {
   }
   
   componentDidMount(){
-    let {eventsHandler} = this.ref.current;
-    
-    eventsHandler.on('change', e => {
+    this.ref.current.on('change', e => {
       let data = e.data;
       console.log('Form is changed!');
     });
-    eventsHandler.on('submit', e => {
+    this.ref.current.on('submit', e => {
       let data = e.data;
       console.log('Form is submitted!');
     })
@@ -27,58 +25,51 @@ module.exports = class RecordForm extends React.Component {
   render(){
     return React.createElement(ReactForm, {
       ref: this.ref,
-      type: 'div',
-      title: this.props.title,
-      data: this.props.data,
-      groups: {
-        client: {
-          fields: {
-            name: {
-              input: {
-                name: 'name',
-                type: 'text',
-              }
-            },
-            email: {
-              input: {
-                name: 'email',
-                type: 'email',
-              }
-            },
-            phone: {
-              input: {
-                name: 'phone',
-                type: 'tel',
-              }
+      options: {
+        type: 'div',
+        title: this.props.title,
+        data: this.props.data,
+        fields: {
+          name: {
+            input: {
+              name: 'client[name]',
+              type: 'text',
+            }
+          },
+          email: {
+            input: {
+              name: 'client[email]',
+              type: 'email',
+            }
+          },
+          phone: {
+            input: {
+              name: 'client[phone]',
+              type: 'tel',
+            }
+          },
+          staffId: {
+            input: {
+              name: 'record[staff_id]',
+              type: 'select',
+              options: [
+                {value: 1, text: 'Ольга'},
+                {value: 2, text: 'Мария'},
+                {value: 3, text: 'Ксения'}
+              ],
+              valueDecorator: value => +value
+            }
+          },
+          comment: {
+            input: {
+              name: 'record[comment]',
+              type: 'textarea',
             }
           }
-        },
-        record: {
-          fields: {
-            staffId: {
-              input: {
-                name: 'staff_id',
-                type: 'select',
-                options: [
-                  {value: 1, text: 'Ольга'},
-                  {value: 2, text: 'Мария'},
-                  {value: 3, text: 'Ксения'}
-                ],
-                valueDecorator: value => +value
-              }
-            },
-            comment: {
-              input: {
-                name: 'comment',
-                type: 'textarea',
-              }
-            }
-          }
-        },
+        }
       },
       renders: {
         main: Renders('./main.jsx'),
-        group: Renders('./group.jsx'),
         field: Renders('./field.jsx'),
       }
     })

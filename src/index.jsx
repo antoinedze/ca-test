@@ -7,15 +7,11 @@ module.exports = (
     <RecordForm 
       title="Создать запись" 
       data={{
-        client: {
-          name: 'Антон',
-          email: 'vasya@mail.ru',
-          phone: '89991234567'
-        },
-        record: {
-          staffId: 2,
-          comment: 'Описание'
-        }
+        name: 'Антон',
+        email: 'vasya@mail.ru',
+        phone: '89991234567',
+        staffId: 2,
+        comment: 'Описание'
       }}
     />
   </div>

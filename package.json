@@ -8,7 +8,7 @@
     "jfactory-expandable": "^1.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "wf-react-form": "^0.0.1-1"
+    "wf-react-form": "^0.0.1-2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",

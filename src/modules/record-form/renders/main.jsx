@@ -1,10 +1,10 @@
 const React = require('react');
 
-module.exports = ({Form, Title, Groups, SubmitButton}, props) => (
+module.exports = ({Form, Title, Fields, SubmitButton}, props) => (
   <Form className="form-wrapper">
     <Title/>
-    <div className="groups">
-      <Groups/>
+    <div className="fields">
+      <Fields/>
     </div>
     <SubmitButton/>
   </Form>
