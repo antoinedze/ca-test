@@ -86,110 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/jfactory-element/index.js":
-/*!************************************************!*\
-  !*** ./node_modules/jfactory-element/index.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\n\r\nclass Element {\r\n\tconstructor(argument){\r\n\t\tif(!argument)return;\r\n\t\t\r\n\t\tlet context, htmlString, htmlElement, tagName, elementFromHtmlString, element;\r\n\t\thtmlString = htmlElement = tagName = argument;\r\n\t\t\r\n\t\tif(argument instanceof HTMLElement){\r\n\t\t\tcontext = htmlElement;\r\n\t\t} else {\r\n\t\t\telementFromHtmlString = /\\</.test(argument);\r\n\t\t\telement = document.createElement(elementFromHtmlString || !tagName ? 'div' : tagName);\r\n\t\t\tif(elementFromHtmlString){\r\n\t\t\t\telement.innerHTML = htmlString;\r\n\t\t\t\telement = element.firstElementChild.cloneNode(true);\r\n\t\t\t}\r\n\t\t\tcontext = element;\r\n\t\t}\r\n\t\tObject.defineProperties(this, {context: {writable: false, value: context}});\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\tid(id){\r\n\t\tif(!this.context)return this;\r\n\t\tif(typeof(id) === 'undefined')\r\n\t\t\treturn this.context.id;\r\n\t\tif(id)\r\n\t\t\tthis.context.id = id;\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\tclass(className){\r\n\t\tif(!this.context)return this;\r\n\t\tif(typeof(className) === 'undefined')\r\n\t\t\treturn this.context.className;\r\n\t\tif(className)\r\n\t\t\tthis.context.className = className;\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\taddClass(className = ''){\r\n\t\tif(!this.context)return this;\r\n\t\tif(!className)return this;\r\n\t\tthis.context.classList.add(className);\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\tremoveClass(className = ''){\r\n\t\tif(!this.context)return this;\r\n\t\tif(!className)return this;\r\n\t\tthis.context.classList.remove(className);\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\tvalue(value){\r\n\t\tif(!this.context)return this;\r\n\t\tif(typeof(value) === 'undefined')\r\n\t\t\treturn this.context.value;\r\n\t\tif(value)\r\n\t\t\tthis.context.value = value;\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\taddAttributes(attributes = {}){\r\n\t\tif(!this.context)return this;\r\n\t\tif(typeof(attributes) !== 'object' || Array.isArray(attributes))return this;\r\n\t\tObject.keys(attributes).map(attrName => {\r\n\t\t\tlet attrValue = attributes[attrName];\r\n\t\t\tif(attrValue)\r\n\t\t\t\tthis.context.setAttribute(attrName, attrValue);\r\n\t\t});\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\tremoveAttribute(attribute = ''){\r\n\t\tif(!this.context)return this;\r\n\t\tif(!attribute)return this;\r\n\t\tthis.context.removeAttribute(attribute);\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\taddEvents(events = {}){\r\n\t\tif(!this.context)return this;\r\n\t\tObject.keys(events).map(eventName => {\r\n\t\t\tthis.context.addEventListener(eventName, (...args) => {\r\n\t\t\t\tlet callback = events[eventName];\r\n\t\t\t\tif(typeof(callback) === 'function')\r\n\t\t\t\t\tcallback.apply(this, args);\r\n\t\t\t});\r\n\t\t});\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\twrap(htmlString = ''){\r\n\t\tif(!this.context)return this;\r\n\t\tif(!htmlString)return this;\r\n\t\tthis.$wrapper = new this.constructor(htmlString);\r\n\t\tthis.$wrapper.deepElementChild($child => !$child.$wrapper).append(this.context);\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\thtml(htmlString){\r\n\t\tif(!this.context)return this;\r\n\t\tif(typeof(htmlString) === 'undefined')\r\n\t\t\treturn this.context.innerHTML;\r\n\t\tthis.context.innerHTML = htmlString;\r\n\t\treturn this;\r\n\t}\r\n\r\n\tsiblings(){\r\n\t\tif(!this.context)return this;\r\n\t\treturn Array.from(this.context.parentElement.children).filter(el => el !== this.context);\r\n\t}\r\n\t\r\n\tdeepElementChild(childIsValid){\r\n\t\tif(!this.context)return this;\r\n\t\tlet $child = new this.constructor(this.context.firstElementChild);\r\n\t\twhile($child.context && (typeof(childIsValid) === 'function' ? childIsValid($child) : true))\r\n\t\t\treturn $child.deepElementChild(childIsValid);\r\n\t\treturn this.context;\r\n\t}\r\n}\r\n\r\nmodule.exports = argument => new Element(argument);\n\n//# sourceURL=webpack:///./node_modules/jfactory-element/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-expandable/config.js":
-/*!****************************************************!*\
-  !*** ./node_modules/jfactory-expandable/config.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = self => ({});\n\n//# sourceURL=webpack:///./node_modules/jfactory-expandable/config.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-expandable/defaults.js":
-/*!******************************************************!*\
-  !*** ./node_modules/jfactory-expandable/defaults.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = {\r\n\tcontainer: document.body,\r\n\telement: ({...data}) => {},\r\n\tclassList: [],\r\n\tdataFiller: null,\r\n\tonChange: () => {},\r\n\tcontrolAdd: {\r\n\t\ttext: 'Добавить',\r\n\t\tclassName: '',\r\n\t\tclick: null,\r\n\t\tattributes: null,\r\n\t\trenderBefore: null,\r\n\t\trenderAfter: null,\r\n\t\tactionBefore: () => {},\r\n\t\tactionAfter: () => {},\r\n\t\tpreventDefault: false\r\n\t},\r\n\tcontrolRemove: {\r\n\t\ttext: 'Удалить',\r\n\t\tclassName: '',\r\n\t\tclick: null,\r\n\t\tattributes: null,\r\n\t\trenderBefore: null,\r\n\t\trenderAfter: null,\r\n\t\tconfirm: () => true,\r\n\t\tactionBefore: () => {},\r\n\t\tactionAfter: () => {},\r\n\t\tpreventDefault: false\r\n\t}\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-expandable/defaults.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-expandable/elements.js":
-/*!******************************************************!*\
-  !*** ./node_modules/jfactory-expandable/elements.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = function(){\r\n\tlet self = this;\r\n\treturn {\r\n\t\twrapper: {\r\n\t\t\tclassList: ['expandable-container'].concat(this.options.classList),\r\n\t\t\tparent: this.options.container,\r\n\t\t\trenderMethod: 'append'\r\n\t\t},\r\n\t\trows: {\r\n\t\t\tclassList: ['expandable__rows'],\r\n\t\t\tparent: 'wrapper',\r\n\t\t\trenderMethod: 'append'\r\n\t\t},\r\n\t\tcontrolAdd: {\r\n\t\t\tclassList: ['expandable__control-add', this.options.controlAdd.className],\r\n\t\t\tcontent: this.options.controlAdd.text,\r\n\t\t\ttagName: 'button',\r\n\t\t\tparent: 'wrapper',\r\n\t\t\trenderMethod: 'append',\r\n\t\t\tattributes: this.options.controlAdd.attributes,\r\n\t\t\trenderBefore: (...args) => {\r\n\t\t\t\tif(typeof(this.options.controlAdd.renderBefore) === 'function')\r\n\t\t\t\t\tthis.options.controlAdd.renderBefore.apply(this, args);\r\n\t\t\t},\r\n\t\t\trenderAfter: (...args) => {\r\n\t\t\t\tif(typeof(this.options.controlAdd.renderAfter) === 'function')\r\n\t\t\t\t\tthis.options.controlAdd.renderAfter.apply(this, args);\r\n\t\t\t},\r\n\t\t\tevents: {\r\n\t\t\t\tclick: e => {\r\n\t\t\t\t\te.preventDefault();\r\n\t\t\t\t\tlet controlAddSettings = this.options.controlAdd, $row;\r\n\t\t\t\t\tcontrolAddSettings.actionBefore.call(this);\r\n\t\t\t\t\tif(!controlAddSettings.preventDefault)\r\n\t\t\t\t\t\t$row = this.add();\r\n\t\t\t\t\tcontrolAddSettings.actionAfter.call(this, $row);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t},\r\n\t\tcontrolRemove: () => ({\r\n\t\t\tclassList: ['expandable__control-remove', this.options.controlRemove.className],\r\n\t\t\tcontent: this.options.controlRemove.text,\r\n\t\t\tattributes: this.options.controlRemove.attributes,\r\n\t\t\trenderBefore: (...args) => {\r\n\t\t\t\tif(typeof(this.options.controlRemove.renderBefore) === 'function')\r\n\t\t\t\t\tthis.options.controlRemove.renderBefore.apply(this, args);\r\n\t\t\t},\r\n\t\t\trenderAfter: (...args) => {\r\n\t\t\t\tif(typeof(this.options.controlRemove.renderAfter) === 'function')\r\n\t\t\t\t\tthis.options.controlRemove.renderAfter.apply(this, args);\r\n\t\t\t},\r\n\t\t\ttagName: 'button',\r\n\t\t\tevents: {\r\n\t\t\t\tclick(e){\r\n\t\t\t\t\te.preventDefault();\r\n\t\t\t\t\tlet controlRemoveSettings = self.options.controlRemove,\r\n\t\t\t\t\t\t$element = this.target;\r\n\t\t\t\t\tif(controlRemoveSettings.confirm.call(self, $element)){\r\n\t\t\t\t\t\tcontrolRemoveSettings.actionBefore.call(self, $element);\r\n\t\t\t\t\t\tif(!controlRemoveSettings.preventDefault)\r\n\t\t\t\t\t\t\tself.remove($element);\r\n\t\t\t\t\t\tcontrolRemoveSettings.actionAfter.call(self, $element);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}),\r\n\t}\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-expandable/elements.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-expandable/index.js":
-/*!***************************************************!*\
-  !*** ./node_modules/jfactory-expandable/index.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("const JFactory = __webpack_require__(/*! jfactory */ \"./node_modules/jfactory/index.js\");\r\n\r\nconst config = __webpack_require__(/*! ./config.js */ \"./node_modules/jfactory-expandable/config.js\");\r\nconst defaults = __webpack_require__(/*! ./defaults.js */ \"./node_modules/jfactory-expandable/defaults.js\");\r\nconst elements = __webpack_require__(/*! ./elements.js */ \"./node_modules/jfactory-expandable/elements.js\");\r\n\r\nmodule.exports = class Expandable extends JFactory.Module {\r\n\tconstructor(options){\r\n\t\tsuper({config, defaults, elements, options});\r\n\t\t\r\n\t\tthis.init();\r\n\t}\r\n\t\r\n\tinit(){\r\n\t\tlet values = this.options.dataFiller || this.defaults.dataFiller;\r\n\t\tif(values)\r\n\t\t\tthis.fill(values);\r\n\t}\r\n\t\r\n\tfill(values){\r\n\t\t//this.createElement('rows');\r\n\t\tvalues.map(data => {\r\n\t\t\tif(data)\r\n\t\t\t\tthis.add(data);\r\n\t\t});\r\n\t\t\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\tadd(data){\r\n\t\tlet element = this.options.element.call(this, data),\r\n\t\t\t$element = this.createElement(element, {\r\n\t\t\t\tparent: 'rows',\r\n\t\t\t\twrapper: this.getTemplate('row'),\r\n\t\t\t\trenderMethod: 'append',\r\n\t\t\t}),\r\n\t\t\t$controlRemove = this.createElement('controlRemove', {\r\n\t\t\t\tparent: $element.$wrapper.context,\r\n\t\t\t\trenderMethod: 'append',\r\n\t\t\t});\r\n\t\t$controlRemove.target = $element;\r\n\t\treturn $element;\r\n\t}\r\n\t\r\n\tremove($element){\r\n\t\t$element.$wrapper.context.remove();\r\n\t\treturn $element;\r\n\t}\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-expandable/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-object/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/jfactory-object/index.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\n\r\nmodule.exports = class extends Object {\r\n\tstatic deepAssign(...args){\r\n\t\treturn args.filter(v => v).reduce((assigned, obj, index, array) => {\r\n\t\t\tif(index === array.length-1){\r\n\t\t\t\tthis.keys(obj).map(key => {\r\n\t\t\t\t\tassigned[key] = typeof(assigned[key]) !== 'undefined' && assigned[key] !== null ? assigned[key] : obj[key];\r\n\t\t\t\t});\r\n\t\t\t\treturn assigned;\r\n\t\t\t}\r\n\t\t\tobj = this.keys(assigned).length ? assigned : obj;\r\n\t\t\tthis.keys(obj).map(key => {\r\n\t\t\t\tlet value = obj[key], \r\n\t\t\t\t\tnextObj = array[index+1],\r\n\t\t\t\t\tnextValue = nextObj && typeof(nextObj[key]) !== 'undefined' && nextObj[key] !== null ? nextObj[key] : value;\r\n\t\t\t\tif(typeof(value) === 'object' && value !== null && !(value instanceof Node) && this.keys(value).length && !Array.isArray(value)){\r\n\t\t\t\t\tassigned[key] = {...value, ...this.deepAssign(value, nextValue)};\r\n\t\t\t\t} else {\r\n\t\t\t\t\tassigned[key] = nextValue;\r\n\t            }\r\n\t\t\t});\r\n\t\t\treturn assigned;\r\n\t\t}, {})\r\n\t}\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-object/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory-string/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/jfactory-string/index.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\n\r\nmodule.exports = class extends String {\r\n\tcamelize(){\r\n\t\tlet value = this.valueOf();\r\n\t\treturn value.charAt(0).toUpperCase() + value.substring(1, value.length);\r\n\t}\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory-string/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory/buildin/module.js":
-/*!*************************************************!*\
-  !*** ./node_modules/jfactory/buildin/module.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\n\r\nconst String = __webpack_require__(/*! jfactory-string */ \"./node_modules/jfactory-string/index.js\");\r\nconst Object = __webpack_require__(/*! jfactory-object */ \"./node_modules/jfactory-object/index.js\");\r\nconst $ = __webpack_require__(/*! jfactory-element */ \"./node_modules/jfactory-element/index.js\");\r\n\r\nmodule.exports = class Module {\r\n\tconstructor({config, defaults, elements, events, options, templates}){\r\n\t\tthis.config = this.getDynamicProperty(config, this) || {};\r\n\t\tthis.defaults = this.getDynamicProperty(defaults, this) || {};\r\n\t\tthis.options = Object.deepAssign(this.defaults, options);\r\n\t\tthis.templates = templates.keys().reduce((obj, key) => {\r\n\t\t\tobj[key] = templates(key);\r\n\t\t\treturn obj;\r\n\t\t}, {});\r\n\t\tthis.events = events.reduce((obj, eventName) => {\r\n\t\t\tlet str = new String(eventName);\r\n\t\t\tobj[`on${str.camelize()}`] = new Event(eventName);\r\n\t\t\treturn obj;\r\n\t\t}, {});\r\n\t\tthis.elements = this.getDynamicProperty(elements, this) || {};\r\n\t\t\r\n\t\tObject.keys(this.elements).map(key => {\r\n\t\t\tlet element = this.elements[key], $element;\r\n\t\t\tif(typeof(element) === 'function')return;\r\n\t\t\t$element = this.createElement(key);\r\n\t\t\tObject.assign(this, $element ? {[`$${key}`]: $element} : {});\r\n\t\t});\r\n\t\t\r\n\t\tthis.$container[this.constructor.name] = this;\r\n\t\t\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\tgetDynamicProperty(property, context, data){\r\n\t\treturn typeof(property) === 'function' ? property.apply(context, Array.isArray(data) ? data : [data]) : property;\r\n\t}\r\n\t\r\n\tgetTemplate(template, objData = {}){\r\n\t\tif(!template)return;\r\n\t\tlet key = ['.', template + '.ejs'].join('/');\r\n\t\treturn this.templates[key](objData);\r\n\t}\r\n\t\r\n\tmapTemplate(template, arrData = []){\r\n\t\treturn arrData.map(data => this.getTemplate(template, data)).join('');\r\n\t}\r\n\r\n\tcreateElement(key, elementData){\r\n\t\tlet elementKey, element, parent, context, $element;\r\n\t\t\r\n\t\telementKey = typeof(key) === 'string' ? key : void(0);\r\n\t\t\r\n\t\telement = Object.deepAssign({\r\n\t\t\ttagName: 'div',\r\n\t\t\tid: '',\r\n\t\t\tclassList: [],\r\n\t\t\tvalue: '',\r\n\t\t\tattributes: {},\r\n\t\t\tparent: '',\r\n\t\t\twrapper: '',\r\n\t\t\tcontent: null,\r\n\t\t\tevents: {},\r\n\t\t\trenderBefore: null,\r\n\t\t\trenderAfter: null,\r\n\t\t\trenderMethod: 'append'\r\n\t\t}, this.getDynamicProperty(this.elements[elementKey], this) || {}, elementData);\r\n\t\t\r\n\t\tparent = typeof(element.parent) === 'string' ? this[`$${element.parent}`].context : element.parent;\r\n\t\t\r\n\t\tcontext = key instanceof Node ? key : element.tagName;\r\n\t\t\t\r\n\t\tif(!(parent instanceof Node))return; \r\n\t\t\r\n\t\t$element = $(context)\r\n\t\t.id(element.id)\r\n\t\t.class(element.classList.join(' '))\r\n\t\t.value(element.value)\r\n\t\t.addAttributes(element.attributes)\r\n\t\t.addEvents(element.events)\r\n\t\t\r\n\t\tif(element.content !== null)\r\n\t\t\t$element.html(element.content);\r\n\t\tif(element.wrapper)\r\n\t\t\t$element.wrap(element.wrapper);\r\n\t\t\r\n\t\tif(typeof(element.renderBefore) === 'function')\r\n\t\t\telement.renderBefore.call(this, $element, element);\r\n\t\tparent[element.renderMethod]($element.$wrapper ? $element.$wrapper.context : $element.context, element.renderReference || '');\r\n\t\tif(typeof(element.renderAfter) === 'function')\r\n\t\t\telement.renderAfter.call(this, $element, element);\r\n\r\n\t\treturn $element;\r\n\t}\r\n\t\r\n\ton(event, callback, options = {}){\r\n\t\tthis.$wrapper.addEventListener(event, callback, options);\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\toff(event, callback, options = {}){\r\n\t\tthis.$wrapper.removeEventListener(event, callback, options);\r\n\t\treturn this;\r\n\t}\r\n\t\r\n\ttrigger(event, data = {}){\r\n\t\tthis.$wrapper.dispatchEvent({...this.events[event], ...data});\r\n\t\treturn this;\r\n\t}\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory/buildin/module.js?");
-
-/***/ }),
-
-/***/ "./node_modules/jfactory/index.js":
-/*!****************************************!*\
-  !*** ./node_modules/jfactory/index.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\n\r\nmodule.exports = {\r\n\tModule: __webpack_require__(/*! ./buildin/module.js */ \"./node_modules/jfactory/buildin/module.js\")\r\n}\n\n//# sourceURL=webpack:///./node_modules/jfactory/index.js?");
-
-/***/ }),
-
 /***/ "./node_modules/object-assign/index.js":
 /*!*********************************************!*\
   !*** ./node_modules/object-assign/index.js ***!
@@ -366,7 +262,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\n\r\nmodule.exports = class EventsHandler {\r\n  constructor(events){\r\n    this.context = document.createElement('span');\r\n    this.events = events.reduce((obj, eventName) => {\r\n      obj[eventName] = new Event(eventName);\r\n      return obj;\r\n    }, {});\r\n  }\r\n  \r\n  on(eventName, callback, options = {}){\r\n    this.context.addEventListener(eventName, callback, options)\r\n    return this;\r\n  }\r\n  \r\n  off(eventName, callback, options = {}){\r\n    this.context.removeEventListener(eventName, callback, options);\r\n    return this;\r\n  }\r\n  \r\n  trigger(eventName, data = {}){\r\n    this.events[eventName].data = data;\r\n    this.context.dispatchEvent(this.events[eventName]);\r\n    return this;\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-events-handler/index.js?");
+eval("\r\n\r\nmodule.exports = class EventsHandler {\r\n  setElement(element){\r\n    this.element = element;\r\n  }\r\n  \r\n  on(eventName, callback, options = {}){\r\n    this.element.addEventListener(eventName, callback, options)\r\n    return this;\r\n  }\r\n  \r\n  off(eventName, callback, options = {}){\r\n    this.element.removeEventListener(eventName, callback, options);\r\n    return this;\r\n  }\r\n  \r\n  trigger(eventName, data = {}){\r\n    let event = new CustomEvent(eventName, {\r\n      cancelable: true,\r\n      detail: data\r\n    });\r\n    this.element.dispatchEvent(event);\r\n    return event;\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-events-handler/index.js?");
 
 /***/ }),
 
@@ -388,7 +284,7 @@ eval("var map = {\n\t\"./field.js\": \"./node_modules/wf-react-form/components/f
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Field extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.localComponents = {\r\n      Input: props => {\r\n        let {className, name, type, options} = this.props.input,\r\n          baseProps = {\r\n            ...props,\r\n            ...{\r\n              value: this.props.data\r\n            }\r\n          };\r\n        \r\n        switch(type){\r\n          case 'select':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...baseProps\r\n            }, ...options.map(({value, text}) => React.createElement('option', {value}, text)));\r\n          case 'textarea':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...baseProps\r\n            });\r\n          default:\r\n            return React.createElement('input', {\r\n              ...{className, name, type},\r\n              ...baseProps\r\n            });\r\n        }\r\n      }\r\n    }\r\n    \r\n    this.localComponents.Input.defaultProps = {\r\n      onChange: e => {\r\n        let {valueDecorator} = this.props.input,\r\n          value = typeof(valueDecorator) === 'function' ? valueDecorator(e.target.value) : e.target.value;\r\n        this.props.onChange(e, value);\r\n      }\r\n    };\r\n  }\r\n  \r\n  render(){\r\n    return this.context.render(this.localComponents, this.props);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/components/field.js?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Field extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    let {input, data, onChange} = this.props;\r\n    \r\n    this.localComponents = {\r\n      Input: props => {\r\n        let {className, name, type, options} = input,\r\n          baseProps = {\r\n            ...props,\r\n            ...{\r\n              value: data\r\n            }\r\n          };\r\n        \r\n        switch(type){\r\n          case 'select':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...baseProps\r\n            }, ...options.map(({value, text}) => React.createElement('option', {value}, text)));\r\n          case 'textarea':\r\n            return React.createElement(type, {\r\n              ...{className, name},\r\n              ...baseProps\r\n            });\r\n          default:\r\n            return React.createElement('input', {\r\n              ...{className, name, type},\r\n              ...baseProps\r\n            });\r\n        }\r\n      }\r\n    }\r\n    \r\n    this.localComponents.Input.defaultProps = {\r\n      onChange: e => {\r\n        let {valueDecorator} = input,\r\n          value = typeof(valueDecorator) === 'function' ? valueDecorator(e.target.value) : e.target.value;\r\n        onChange(e, value);\r\n      }\r\n    };\r\n  }\r\n  \r\n  render(){\r\n    return this.context.render(this.localComponents, this.props);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/components/field.js?");
 
 /***/ }),
 
@@ -399,7 +295,7 @@ eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst QueryString = __webpack_require__(/*! querystring */ \"./node_modules/querystring-es3/index.js\");\r\n\r\nmodule.exports = class Main extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.state = {\r\n      data: this.props.data\r\n    }\r\n    \r\n    this.localComponents = {\r\n      Form: props => React.createElement(this.props.type, {\r\n        ...{\r\n          onSubmit: e => e.preventDefault()\r\n        },\r\n        ...props\r\n      }),\r\n      Title: props => React.createElement('h1', {\r\n        ...{\r\n          children: this.props.title\r\n        },\r\n        ...props\r\n      }),\r\n      Fields: props => Object.keys(this.props.fields).map(key => {\r\n        let {Field} = this.context.dependents;\r\n        return React.createElement(Field, {\r\n          ...this.props.fields[key],\r\n          ...{\r\n            key,\r\n            data: this.state.data[key],\r\n            onChange: (e, value) => {\r\n              this.state.data[key] = value;\r\n              this.setState(this.state);\r\n              this.context.trigger('change', this.state);\r\n            }\r\n          },\r\n        })\r\n      }),\r\n      SubmitButton: props => React.createElement('button', {\r\n        ...{\r\n          onClick: this.submit.bind(this),\r\n          children: this.props.submitText\r\n        },\r\n        ...props\r\n      })\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    return this.context.render(this.localComponents, this.props);\r\n  }\r\n  \r\n  submit(e){\r\n    let {fields, endpoint, contentType, responseHandler} = this.props,\r\n      data = Object.keys(fields).reduce((obj, key) => {\r\n        let {input} = fields[key];\r\n        obj[input.name] = this.state.data[key];\r\n        return obj;\r\n      }, {});\r\n    \r\n    return fetch(endpoint, {\r\n      method: 'POST',\r\n      headers: {\r\n        'Content-Type': contentType\r\n      },\r\n      body: QueryString.encode(data)\r\n    })\r\n    .then(responseHandler)\r\n    .then(response => {\r\n      this.context.trigger('submit', response);\r\n    })\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/components/main.js?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst QueryString = __webpack_require__(/*! querystring */ \"./node_modules/querystring-es3/index.js\");\r\n\r\nmodule.exports = class Main extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.state = {\r\n      data: this.props.data\r\n    }\r\n    \r\n    this.localComponents = {\r\n      Form: props => React.createElement(this.props.type, {\r\n        ...{\r\n          ref: this.context.ref,\r\n          onSubmit: e => e.preventDefault()\r\n        },\r\n        ...props\r\n      }),\r\n      Title: props => React.createElement('h1', {\r\n        ...{\r\n          children: this.props.title\r\n        },\r\n        ...props\r\n      }),\r\n      Fields: props => Object.keys(this.props.fields).map(key => {\r\n        let {Field} = this.context.dependents;\r\n        return React.createElement(Field, {\r\n          ...this.props.fields[key],\r\n          ...{\r\n            key,\r\n            data: this.state.data[key],\r\n            onChange: (e, value) => {\r\n              this.state.data[key] = value;\r\n              this.setState(this.state);\r\n              this.context.trigger('change', this.state.data);\r\n            }\r\n          },\r\n        })\r\n      }),\r\n      SubmitButton: props => React.createElement('button', {\r\n        ...{\r\n          onClick: this.submit.bind(this),\r\n          children: this.props.submitText\r\n        },\r\n        ...props\r\n      })\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    return this.context.render(this.localComponents, this.props);\r\n  }\r\n  \r\n  submit(e){\r\n    let {fields, endpoint, contentType, responseHandler, onSubmit} = this.props,\r\n      data = Object.keys(fields).reduce((obj, key) => {\r\n        let {input} = fields[key];\r\n        obj[input.name] = this.state.data[key];\r\n        return obj;\r\n      }, {});\r\n    \r\n    return fetch(endpoint, {\r\n      method: 'POST',\r\n      headers: {\r\n        'Content-Type': contentType\r\n      },\r\n      body: QueryString.encode(data)\r\n    })\r\n    .then(responseHandler)\r\n    .then(response => {\r\n      let event = this.context.trigger('submit', response);\r\n      if(typeof(onSubmit) === 'function' && !event.defaultPrevented)\r\n        onSubmit(event);\r\n    })\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/components/main.js?");
 
 /***/ }),
 
@@ -410,7 +306,7 @@ eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const defaultRenders = __webpack_require__(\"./node_modules/wf-react-form/renders sync \\\\.jsx$\");\r\n\r\nmodule.exports = {\r\n  options: {\r\n    type: 'form',\r\n    title: 'Заголовок формы',\r\n    fields: {},\r\n    data: {},\r\n    submitText: 'Отправить',\r\n    endpoint: '/',\r\n    contentType: 'application/x-www-form-urlencoded;charset=utf-8',\r\n    responseHandler: response => response.text(),\r\n  },\r\n  renders: {\r\n    main: defaultRenders('./main.jsx'),\r\n    field: defaultRenders('./field.jsx'),\r\n  },\r\n  /*successTitle: 'Спасибо!',\r\n  editModeEditTitle: 'Редактировать',\r\n  editModeEditSubmitText: 'Сохранить',\r\n  editModeEditSuccessTitle: 'Изменения сохранены!',\r\n  editModeDeleteSubmitText: 'Удалить',\r\n  editModeDeleteSuccessTitle: 'Удалено!',\r\n  hideSubmitButtons: false,\r\n  onBeforeChange: () => new Promise(s => s()),\r\n  onInit: null,\r\n  onChange: () => {},\r\n  rowClassName: ''*/\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/defaults.js?");
+eval("const defaultRenders = __webpack_require__(\"./node_modules/wf-react-form/renders sync \\\\.jsx$\");\r\n\r\nmodule.exports = {\r\n  options: {\r\n    type: 'form',\r\n    title: 'Заголовок формы',\r\n    fields: {},\r\n    data: {},\r\n    submitText: 'Отправить',\r\n    endpoint: '/',\r\n    contentType: 'application/x-www-form-urlencoded;charset=utf-8',\r\n    responseHandler: response => response.text(),\r\n    onSubmit: null\r\n  },\r\n  renders: {\r\n    main: defaultRenders('./main.jsx'),\r\n    field: defaultRenders('./field.jsx'),\r\n  },\r\n  /*successTitle: 'Спасибо!',\r\n  editModeEditTitle: 'Редактировать',\r\n  editModeEditSubmitText: 'Сохранить',\r\n  editModeEditSuccessTitle: 'Изменения сохранены!',\r\n  editModeDeleteSubmitText: 'Удалить',\r\n  editModeDeleteSuccessTitle: 'Удалено!',\r\n  hideSubmitButtons: false,\r\n  onBeforeChange: () => new Promise(s => s()),\r\n  onInit: null,\r\n  onChange: () => {},\r\n  rowClassName: ''*/\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/defaults.js?");
 
 /***/ }),
 
@@ -422,7 +318,7 @@ eval("const defaultRenders = __webpack_require__(\"./node_modules/wf-react-form/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst EventsHandler = __webpack_require__(/*! wf-events-handler */ \"./node_modules/wf-events-handler/index.js\");\r\n\r\nconst Components = __webpack_require__(\"./node_modules/wf-react-form/components sync \\\\.js$\");\r\nconst Defaults = __webpack_require__(/*! ./defaults.js */ \"./node_modules/wf-react-form/defaults.js\");\r\n\r\nconst Main = Components('./main.js');\r\nconst Field = Components('./field.js');\r\n\r\nclass ReactForm extends React.Component {\r\n  constructor(props){\r\n    super(props); \r\n    \r\n    let renders = {...this.constructor.defaultProps.renders, ...this.props.renders},\r\n      eventsHandler = new EventsHandler(['init', 'change', 'submit', 'fieldChange']),\r\n      trigger = eventsHandler.trigger.bind(eventsHandler);\r\n    \r\n    Main.contextType = React.createContext({\r\n      dependents: {Field},\r\n      render: renders.main,\r\n      trigger\r\n    });\r\n    \r\n    Field.contextType = React.createContext({\r\n      render: renders.field,\r\n      trigger\r\n    });\r\n    \r\n    ['on', 'off'].map(key => Object.defineProperty(this, key, {value: eventsHandler[key].bind(eventsHandler)}));\r\n  }\r\n  \r\n  render(){\r\n    let options = {...this.constructor.defaultProps.options, ...this.props.options};\r\n    return React.createElement(Main, options);\r\n  }\r\n}\r\n\r\nReactForm.defaultProps = Defaults;\r\n\r\nmodule.exports = ReactForm;\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/index.js?");
+eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst EventsHandler = __webpack_require__(/*! wf-events-handler */ \"./node_modules/wf-events-handler/index.js\");\r\n\r\nconst Components = __webpack_require__(\"./node_modules/wf-react-form/components sync \\\\.js$\");\r\nconst Defaults = __webpack_require__(/*! ./defaults.js */ \"./node_modules/wf-react-form/defaults.js\");\r\n\r\nconst Main = Components('./main.js');\r\nconst Field = Components('./field.js');\r\n\r\nclass ReactForm extends React.Component {\r\n  constructor(props){\r\n    super(props); \r\n    \r\n    this.ref = React.createRef();\r\n    \r\n    this.eventsHandler = new EventsHandler;\r\n      \r\n    let renders = {...this.constructor.defaultProps.renders, ...this.props.renders},\r\n      trigger = this.eventsHandler.trigger.bind(this.eventsHandler);\r\n    \r\n    Main.contextType = React.createContext({\r\n      ref: this.ref,\r\n      dependents: {Field},\r\n      render: renders.main,\r\n      trigger\r\n    });\r\n    \r\n    Field.contextType = React.createContext({\r\n      render: renders.field,\r\n      trigger\r\n    });\r\n  }\r\n  \r\n  componentDidMount(){\r\n    this.eventsHandler.setElement(this.ref.current);\r\n    ['on', 'off'].map(key => Object.defineProperty(this, key, {value: this.eventsHandler[key].bind(this.eventsHandler)}));\r\n  }\r\n  \r\n  render(){\r\n    let options = {...this.constructor.defaultProps.options, ...this.props.options};\r\n    return React.createElement(Main, options);\r\n  }\r\n}\r\n\r\nReactForm.defaultProps = Defaults;\r\n\r\nmodule.exports = ReactForm;\n\n//# sourceURL=webpack:///./node_modules/wf-react-form/index.js?");
 
 /***/ }),
 
@@ -459,6 +355,95 @@ eval("module.exports = ({Form, Title, Fields, SubmitButton}, props) => {\r\n  re
 
 /***/ }),
 
+/***/ "./node_modules/wf-react-repeater/components sync \\.js$":
+/*!***************************************************************************!*\
+  !*** ./node_modules/wf-react-repeater/components sync nonrecursive \.js$ ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var map = {\n\t\"./main.js\": \"./node_modules/wf-react-repeater/components/main.js\",\n\t\"./row.js\": \"./node_modules/wf-react-repeater/components/row.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./node_modules/wf-react-repeater/components sync \\\\.js$\";\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/components_sync_nonrecursive_\\.js$?");
+
+/***/ }),
+
+/***/ "./node_modules/wf-react-repeater/components/main.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/wf-react-repeater/components/main.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Main extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    this.state = {\r\n      data: this.props.data\r\n    }\r\n    \r\n    this.localComponents = {\r\n      Container: props => React.createElement('div', {\r\n        ...{\r\n          ref: this.context.ref\r\n        },\r\n        ...props\r\n      }),\r\n      Title: props => React.createElement('h1', {\r\n        ...{\r\n          children: this.props.title\r\n        },\r\n        ...props\r\n      }),\r\n      Rows: props => this.state.data.map((data, key) => {\r\n        let {Row} = this.context.dependents,\r\n          {removeButtonText, rowElement} = this.props;\r\n        return React.createElement(Row, {\r\n          key, data, removeButtonText, rowElement,\r\n          onRowRemove: e => {\r\n            this.removeRow(key);\r\n          }\r\n        });\r\n      }),\r\n      AddButton: props => React.createElement('button', {\r\n        ...{\r\n          onClick: this.addRow.bind(this),\r\n          children: this.props.addButtonText\r\n        },\r\n        ...props\r\n      })\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    return this.context.render(this.localComponents, this.props);\r\n  }\r\n  \r\n  addRow(triggerEvents = true){\r\n    let {onRowAdd} = this.props, event;\r\n    \r\n    this.state.data = this.state.data.concat(this.emptyDataValue);\r\n    this.setState(this.state);\r\n    if(triggerEvents){\r\n      event = this.context.trigger('rowAdd', this.state.data);\r\n      if(typeof(onRowAdd) === 'function' && !event.defaultPrevented)\r\n        onRowAdd(event);\r\n    }\r\n  }\r\n\r\n  removeRow(index, triggerEvents = true){\r\n    let {onRowRemove} = this.props, event;\r\n    \r\n    this.state.data.splice(index, 1);\r\n    this.setState(this.state);\r\n    if(triggerEvents){\r\n      event = this.context.trigger('rowRemove', this.state.data);\r\n      if(typeof(onRowRemove) === 'function' && !event.defaultPrevented)\r\n        onRowRemove(event);\r\n    }\r\n  }\r\n  \r\n  get emptyDataValue(){\r\n    switch(typeof(this.state.data[0])){\r\n      case 'object': return {value: ''}\r\n      case 'string': return ''\r\n    }\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/components/main.js?");
+
+/***/ }),
+
+/***/ "./node_modules/wf-react-repeater/components/row.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/wf-react-repeater/components/row.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = class Row extends React.Component {\r\n  constructor(props){\r\n    super(props);\r\n    \r\n    let {removeButtonText, onRowRemove, rowElement, data, index} = this.props;\r\n    \r\n    this.localComponents = {\r\n      Container: props => React.createElement('div', props),\r\n      Element: props => React.createElement(rowElement, {\r\n        ...this.props.data,\r\n        ...props\r\n      }),\r\n      RemoveButton: props => React.createElement('button', {\r\n        ...{\r\n          onClick: onRowRemove.bind(this),\r\n          children: removeButtonText\r\n        },\r\n        ...props\r\n      })\r\n    }\r\n  }\r\n  \r\n  render(){\r\n    return this.context.render(this.localComponents, this.props);\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/components/row.js?");
+
+/***/ }),
+
+/***/ "./node_modules/wf-react-repeater/defaults.js":
+/*!****************************************************!*\
+  !*** ./node_modules/wf-react-repeater/defaults.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst DefaultRenders = __webpack_require__(\"./node_modules/wf-react-repeater/renders sync \\\\.jsx$\");\r\n\r\nmodule.exports = {\r\n  options: {\r\n    rowElement: props => React.createElement('input', {\r\n      ...{\r\n        onChange: e => {}\r\n      },\r\n      ...props\r\n    }),\r\n    data: [{value: 'Заполненное поле'}],\r\n    addButtonText: 'Добавить',\r\n    removeButtonText: 'Удалить',\r\n    onRowAdd: null,\r\n    onRowRemove: null,\r\n  },\r\n  renders: {\r\n    main: DefaultRenders('./main.jsx'),\r\n    row: DefaultRenders('./row.jsx'),\r\n  }\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/defaults.js?");
+
+/***/ }),
+
+/***/ "./node_modules/wf-react-repeater/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/wf-react-repeater/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\n\r\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nconst EventsHandler = __webpack_require__(/*! wf-events-handler */ \"./node_modules/wf-events-handler/index.js\");\r\n\r\nconst Components = __webpack_require__(\"./node_modules/wf-react-repeater/components sync \\\\.js$\");\r\nconst Defaults = __webpack_require__(/*! ./defaults.js */ \"./node_modules/wf-react-repeater/defaults.js\");\r\n\r\nconst Main = Components('./main.js');\r\nconst Row = Components('./row.js');\r\n\r\nclass ReactRepeater extends React.Component {\r\n  constructor(props){\r\n    super(props); \r\n    \r\n    this.ref = React.createRef();\r\n    \r\n    this.eventsHandler = new EventsHandler;\r\n      \r\n    let renders = {...this.constructor.defaultProps.renders, ...this.props.renders},\r\n      trigger = this.eventsHandler.trigger.bind(this.eventsHandler);\r\n    \r\n    Main.contextType = React.createContext({\r\n      ref: this.ref,\r\n      dependents: {Row},\r\n      render: renders.main,\r\n      trigger\r\n    });\r\n    \r\n    Row.contextType = React.createContext({\r\n      render: renders.row,\r\n      trigger\r\n    });\r\n  }\r\n  \r\n  componentDidMount(){\r\n    this.eventsHandler.setElement(this.ref.current);\r\n    ['on', 'off'].map(key => Object.defineProperty(this, key, {value: this.eventsHandler[key].bind(this.eventsHandler)}));\r\n  }\r\n  \r\n  render(){\r\n    let options = {...this.constructor.defaultProps.options, ...this.props.options};\r\n    return React.createElement(Main, options);\r\n  }\r\n}\r\n\r\nReactRepeater.defaultProps = Defaults;\r\n\r\nmodule.exports = ReactRepeater;\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/wf-react-repeater/renders sync \\.jsx$":
+/*!*************************************************************************!*\
+  !*** ./node_modules/wf-react-repeater/renders sync nonrecursive \.jsx$ ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var map = {\n\t\"./main.jsx\": \"./node_modules/wf-react-repeater/renders/main.jsx\",\n\t\"./row.jsx\": \"./node_modules/wf-react-repeater/renders/row.jsx\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./node_modules/wf-react-repeater/renders sync \\\\.jsx$\";\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/renders_sync_nonrecursive_\\.jsx$?");
+
+/***/ }),
+
+/***/ "./node_modules/wf-react-repeater/renders/main.jsx":
+/*!*********************************************************!*\
+  !*** ./node_modules/wf-react-repeater/renders/main.jsx ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = ({Container, Title, Rows, AddButton}, props) => {\r\n  return React.createElement(Container, {}, \r\n    React.createElement(Title), \r\n    React.createElement(Rows), \r\n    React.createElement(AddButton)\r\n  );\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/renders/main.jsx?");
+
+/***/ }),
+
+/***/ "./node_modules/wf-react-repeater/renders/row.jsx":
+/*!********************************************************!*\
+  !*** ./node_modules/wf-react-repeater/renders/row.jsx ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\n\r\nmodule.exports = ({Container, Element, RemoveButton}, props) => {\r\n  return React.createElement(Container, {}, \r\n    React.createElement(Element),\r\n    React.createElement(RemoveButton)\r\n  );\r\n}\n\n//# sourceURL=webpack:///./node_modules/wf-react-repeater/renders/row.jsx?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -477,7 +462,7 @@ eval("const ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/rea
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst RecordForm = __webpack_require__(/*! ./modules/record-form */ \"./src/modules/record-form/index.js\");\n\nmodule.exports = React.createElement(\"div\", null, React.createElement(RecordForm, {\n  title: \"\\u0421\\u043E\\u0437\\u0434\\u0430\\u0442\\u044C \\u0437\\u0430\\u043F\\u0438\\u0441\\u044C\",\n  data: {\n    name: 'Антон',\n    email: 'vasya@mail.ru',\n    phone: '89991234567',\n    staffId: 2,\n    comment: 'Описание'\n  }\n}));\n\n//# sourceURL=webpack:///./src/index.jsx?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst RecordForm = __webpack_require__(/*! ./modules/record-form */ \"./src/modules/record-form/index.js\");\n\nconst ReactRepeater = __webpack_require__(/*! wf-react-repeater */ \"./node_modules/wf-react-repeater/index.js\");\n\nmodule.exports = React.createElement(\"div\", null, React.createElement(ReactRepeater, null));\n\n//# sourceURL=webpack:///./src/index.jsx?");
 
 /***/ }),
 
@@ -488,7 +473,7 @@ eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactForm = __webpack_require__(/*! wf-react-form */ \"./node_modules/wf-react-form/index.js\");\n\nconst Expandable = __webpack_require__(/*! jfactory-expandable */ \"./node_modules/jfactory-expandable/index.js\");\n\nconst Renders = __webpack_require__(\"./src/modules/record-form/renders sync \\\\.jsx$\");\n\nmodule.exports = class RecordForm extends React.Component {\n  constructor(props) {\n    super(props);\n    this.ref = React.createRef();\n  }\n\n  componentDidMount() {\n    this.ref.current.on('change', e => {\n      let data = e.data;\n      console.log('Form is changed!');\n    });\n    this.ref.current.on('submit', e => {\n      let data = e.data;\n      console.log('Form is submitted!');\n    });\n  }\n\n  render() {\n    return React.createElement(ReactForm, {\n      ref: this.ref,\n      options: {\n        type: 'div',\n        title: this.props.title,\n        data: this.props.data,\n        fields: {\n          name: {\n            input: {\n              name: 'client[name]',\n              type: 'text'\n            }\n          },\n          email: {\n            input: {\n              name: 'client[email]',\n              type: 'email'\n            }\n          },\n          phone: {\n            input: {\n              name: 'client[phone]',\n              type: 'tel'\n            }\n          },\n          staffId: {\n            input: {\n              name: 'record[staff_id]',\n              type: 'select',\n              options: [{\n                value: 1,\n                text: 'Ольга'\n              }, {\n                value: 2,\n                text: 'Мария'\n              }, {\n                value: 3,\n                text: 'Ксения'\n              }],\n              valueDecorator: value => +value\n            }\n          },\n          comment: {\n            input: {\n              name: 'record[comment]',\n              type: 'textarea'\n            }\n          }\n        }\n      },\n      renders: {\n        main: Renders('./main.jsx'),\n        field: Renders('./field.jsx')\n      }\n    });\n  }\n\n};\n\n//# sourceURL=webpack:///./src/modules/record-form/index.js?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactForm = __webpack_require__(/*! wf-react-form */ \"./node_modules/wf-react-form/index.js\");\n\nconst ReactRepeater = __webpack_require__(/*! wf-react-repeater */ \"./node_modules/wf-react-repeater/index.js\");\n\nconst Renders = __webpack_require__(\"./src/modules/record-form/renders sync \\\\.jsx$\");\n\nmodule.exports = class RecordForm extends React.Component {\n  constructor(props) {\n    super(props);\n    this.ref = React.createRef();\n  }\n\n  componentDidMount() {\n    this.ref.current.on('change', e => {\n      let data = e.detail;\n      console.log('Form is changed!');\n    });\n    this.ref.current.on('submit', e => {\n      let data = e.detail;\n      e.preventDefault();\n      console.log('Form is submitted!');\n    });\n  }\n\n  render() {\n    return React.createElement(ReactForm, {\n      ref: this.ref,\n      options: {\n        type: 'div',\n        title: this.props.title,\n        data: this.props.data,\n        fields: {\n          name: {\n            input: {\n              name: 'client[name]',\n              type: 'text'\n            }\n          },\n          email: {\n            input: {\n              name: 'client[email]',\n              type: 'email'\n            }\n          },\n          phone: {\n            input: {\n              name: 'client[phone]',\n              type: 'tel'\n            }\n          },\n          staffId: {\n            input: {\n              name: 'record[staff_id]',\n              type: 'select',\n              options: [{\n                value: 1,\n                text: 'Ольга'\n              }, {\n                value: 2,\n                text: 'Мария'\n              }, {\n                value: 3,\n                text: 'Ксения'\n              }],\n              valueDecorator: value => +value\n            }\n          },\n          comment: {\n            input: {\n              name: 'record[comment]',\n              type: 'textarea'\n            }\n          }\n        },\n        onSubmit: e => {\n          alert('submitted!');\n        }\n      },\n      renders: {\n        main: Renders('./main.jsx'),\n        field: Renders('./field.jsx')\n      }\n    });\n  }\n\n};\n\n//# sourceURL=webpack:///./src/modules/record-form/index.js?");
 
 /***/ }),
 

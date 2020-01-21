@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactForm = require('wf-react-form');
-const Expandable = require('jfactory-expandable');
+const ReactRepeater = require('wf-react-repeater');
 
 const Renders = require.context('./renders', false, /\.jsx$/);
 
@@ -13,11 +13,12 @@ module.exports = class RecordForm extends React.Component {
   
   componentDidMount(){
     this.ref.current.on('change', e => {
-      let data = e.data;
+      let data = e.detail;
       console.log('Form is changed!');
     });
     this.ref.current.on('submit', e => {
-      let data = e.data;
+      let data = e.detail;
+      e.preventDefault();
       console.log('Form is submitted!');
     })
   }
@@ -66,6 +67,9 @@ module.exports = class RecordForm extends React.Component {
               type: 'textarea',
             }
           }
+        },
+        onSubmit: e => {
+          alert('submitted!');
         }
       },
       renders: {
