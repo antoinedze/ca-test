@@ -1,3 +1,4 @@
+const QueryString = require('querystring');
 const React = require('react');
 const ReactForm = require('wf-react-form');
 const ReactRepeater = require('wf-react-repeater');
@@ -17,9 +18,21 @@ module.exports = class RecordForm extends React.Component {
       console.log('Form is changed!');
     });
     this.ref.current.on('submit', e => {
-      let data = e.detail;
       e.preventDefault();
-      console.log('Form is submitted!');
+      
+      let data = e.detail;
+      
+      fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        body: QueryString.encode(data)
+      })
+      .then(response => response.text())
+      .then(response => {
+        console.log(response);
+      })
     })
   }
   
@@ -69,7 +82,7 @@ module.exports = class RecordForm extends React.Component {
           }
         },
         onSubmit: e => {
-          alert('submitted!');
+          console.log(e.detail);
         }
       },
       renders: {

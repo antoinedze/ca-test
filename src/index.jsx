@@ -5,7 +5,7 @@ const ReactRepeater = require('wf-react-repeater');
 
 module.exports = (
   <div>
-    {/*<RecordForm 
+    <RecordForm 
       title="Создать запись" 
       data={{
         name: 'Антон',
@@ -14,7 +14,7 @@ module.exports = (
         staffId: 2,
         comment: 'Описание'
       }}
-    />*/}
-    <ReactRepeater/>
+    />
+    {/*<ReactRepeater/>*/}
   </div>
 );
